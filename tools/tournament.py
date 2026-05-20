@@ -7,9 +7,11 @@ from kaggle_environments import make
 
 AGENTS = {
     "main": "main.py",
+    "main_v2": "agents/main_v2.py",
     "random": "random",
     "greedy_nearest": "agents/greedy_nearest.py",
     "aggressive": "agents/aggressive_rusher.py",
+    "production_hunter": "agents/production_hunter.py",
 }
 
 def owner_stats(observation):
@@ -182,7 +184,14 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seeds", type=int, default=50)
     parser.add_argument("--seed-start", type=int, default=0)
-    parser.add_argument("--agents", nargs="+", choices=AGENTS.keys(), default=list(AGENTS))
+    parser.add_argument("--agents", nargs="+")
+    parser.add_argument(
+        "--agent-file",
+        action="append",
+        default=[],
+        metavar="NAME=PATH",
+        help="Register an extra agent file for this run.",
+    )
     parser.add_argument(
         "--matchup",
         action="append",
@@ -195,7 +204,32 @@ def parse_args():
     return parser.parse_args()
 
 
-def iter_matchups(args):
+def build_agents(args):
+    agents = dict(AGENTS)
+
+    for spec in args.agent_file:
+        try:
+            name, path = spec.split("=", 1)
+        except ValueError as exc:
+            raise SystemExit(f"invalid agent file {spec!r}; expected NAME=PATH") from exc
+
+        name = name.strip()
+        path = path.strip()
+
+        if not name or not path:
+            raise SystemExit(f"invalid agent file {spec!r}; expected NAME=PATH")
+
+        agents[name] = path
+
+    selected = args.agents or list(agents)
+    unknown = [name for name in selected if name not in agents]
+    if unknown:
+        raise SystemExit(f"unknown agent(s): {', '.join(unknown)}")
+
+    return agents, selected
+
+
+def iter_matchups(args, agents, selected_agents):
     if args.matchup:
         for matchup in args.matchup:
             try:
@@ -203,13 +237,13 @@ def iter_matchups(args):
             except ValueError as exc:
                 raise SystemExit(f"invalid matchup {matchup!r}; expected A:B") from exc
 
-            if name_a not in AGENTS or name_b not in AGENTS:
+            if name_a not in agents or name_b not in agents:
                 raise SystemExit(f"unknown matchup agent in {matchup!r}")
 
             yield name_a, name_b
         return
 
-    yield from combinations(args.agents, 2)
+    yield from combinations(selected_agents, 2)
 
 
 def print_table(results):
@@ -234,6 +268,7 @@ def print_table(results):
 
 def main():
     args = parse_args()
+    agents, selected_agents = build_agents(args)
     results = {}
     seeds = range(args.seed_start, args.seed_start + args.seeds)
 
@@ -243,9 +278,9 @@ def main():
         telemetry_file = args.telemetry.open("w", encoding="utf-8")
 
     try:
-        for name_a, name_b in iter_matchups(args):
-            a_path = AGENTS[name_a]
-            b_path = AGENTS[name_b]
+        for name_a, name_b in iter_matchups(args, agents, selected_agents):
+            a_path = agents[name_a]
+            b_path = agents[name_b]
             matchup = f"{name_a} vs {name_b}"
             score = new_score()
 
