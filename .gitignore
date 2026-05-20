@@ -3,3 +3,9 @@ __pycache__/
 *.py[cod]
 agents/generated/
 telemetry/
+kaggle_reference/
+logs/
+replays/
+submission.py
+submission.tar.gz
+submission_package/

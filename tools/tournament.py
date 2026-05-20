@@ -8,6 +8,8 @@ from kaggle_environments import make
 AGENTS = {
     "main": "main.py",
     "main_v2": "agents/main_v2.py",
+    "v0_1": "agents/versions/v0_1.py",
+    "v0_2": "agents/versions/v0_2.py",
     "random": "random",
     "greedy_nearest": "agents/greedy_nearest.py",
     "aggressive": "agents/aggressive_rusher.py",
