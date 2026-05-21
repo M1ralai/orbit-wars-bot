@@ -9,3 +9,5 @@ replays/
 submission.py
 submission.tar.gz
 submission_package/
+auto_runs/
+training/

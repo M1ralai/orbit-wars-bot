@@ -1,9 +1,16 @@
 import argparse
+import contextlib
 import json
+import logging
+import os
 from itertools import combinations
 from pathlib import Path
 
-from kaggle_environments import make
+logging.getLogger("kaggle_environments").setLevel(logging.ERROR)
+
+with open(os.devnull, "w", encoding="utf-8") as devnull:
+    with contextlib.redirect_stdout(devnull), contextlib.redirect_stderr(devnull):
+        from kaggle_environments import make
 
 AGENTS = {
     "main": "main.py",
@@ -14,6 +21,7 @@ AGENTS = {
     "greedy_nearest": "agents/greedy_nearest.py",
     "aggressive": "agents/aggressive_rusher.py",
     "production_hunter": "agents/production_hunter.py",
+    "v3_strategic": "agents/v3_strategic.py",
 }
 
 def owner_stats(observation):

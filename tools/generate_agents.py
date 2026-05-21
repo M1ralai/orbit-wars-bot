@@ -3,161 +3,36 @@ import json
 from pathlib import Path
 
 
-TEMPLATE = '''import math
+def build_template():
+    bot_dir = Path(__file__).resolve().parent.parent / "bot"
+    order = ["params.py", "geometry.py", "state.py", "scoring.py", "strategy.py"]
+    lines = ["import math"]
+    
+    for filename in order:
+        content = (bot_dir / filename).read_text(encoding="utf-8")
+        for line in content.splitlines():
+            if line.startswith("import math") or line.startswith("from bot.") or line.startswith("import bot."):
+                continue
+            lines.append(line)
+            
+    raw_text = "\n".join(lines)
+    
+    # Escape braces so .format(**params) works correctly
+    text = raw_text.replace("{", "{{").replace("}", "}}")
+    
+    # Unescape the known injected parameters
+    known_params = [
+        "min_ships", "min_reserve", "reserve_prod_mult", "neutral_bonus", 
+        "enemy_bonus", "pressure_max", "pressure_divisor", "production_weight", 
+        "high_production_weight", "distance_weight", "high_distance_weight", 
+        "ship_weight", "high_ship_weight", "overkill", "high_prod_extra", "enemy_extra"
+    ]
+    for p in known_params:
+        text = text.replace(f"{{{{{p}}}}}", f"{{{p}}}")
+        
+    return text
 
-CENTER_X = 50.0
-CENTER_Y = 50.0
-SUN_RADIUS = 10.0
-
-MIN_SHIPS = {min_ships}
-MIN_RESERVE = {min_reserve}
-RESERVE_PROD_MULT = {reserve_prod_mult}
-NEUTRAL_BONUS = {neutral_bonus}
-ENEMY_BONUS = {enemy_bonus}
-PRESSURE_MAX = {pressure_max}
-PRESSURE_DIVISOR = {pressure_divisor}
-PRODUCTION_WEIGHT = {production_weight}
-HIGH_PRODUCTION_WEIGHT = {high_production_weight}
-DISTANCE_WEIGHT = {distance_weight}
-HIGH_DISTANCE_WEIGHT = {high_distance_weight}
-SHIP_WEIGHT = {ship_weight}
-HIGH_SHIP_WEIGHT = {high_ship_weight}
-OVERKILL = {overkill}
-HIGH_PROD_EXTRA = {high_prod_extra}
-ENEMY_EXTRA = {enemy_extra}
-
-
-def parse_planet(planet):
-    return {{
-        "id": planet[0],
-        "owner": planet[1],
-        "x": planet[2],
-        "y": planet[3],
-        "radius": planet[4],
-        "ships": planet[5],
-        "production": planet[6],
-    }}
-
-
-def dist(a, b):
-    return math.hypot(a["x"] - b["x"], a["y"] - b["y"])
-
-
-def segment_point_distance(px, py, ax, ay, bx, by):
-    dx = bx - ax
-    dy = by - ay
-
-    if dx == 0 and dy == 0:
-        return math.hypot(px - ax, py - ay)
-
-    t = ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)
-    t = max(0.0, min(1.0, t))
-
-    cx = ax + t * dx
-    cy = ay + t * dy
-
-    return math.hypot(px - cx, py - cy)
-
-
-def path_hits_sun(src, target):
-    distance_to_sun = segment_point_distance(
-        CENTER_X,
-        CENTER_Y,
-        src["x"],
-        src["y"],
-        target["x"],
-        target["y"],
-    )
-    return distance_to_sun <= SUN_RADIUS + 0.5
-
-
-def capture_cost(target, player, assigned):
-    already_sent = assigned.get(target["id"], 0)
-    needed = int(target["ships"] + OVERKILL - already_sent)
-
-    if target["production"] >= 3:
-        needed += int(target["production"] * HIGH_PROD_EXTRA)
-
-    if target["owner"] not in (-1, player):
-        needed += ENEMY_EXTRA
-
-    return max(0, needed)
-
-
-def target_score(src, target, player, step, assigned):
-    if path_hits_sun(src, target):
-        return -10**9
-
-    needed = capture_cost(target, player, assigned)
-    if needed <= 0:
-        return -10**8
-
-    distance = dist(src, target)
-    high_production = target["production"] >= 3
-    is_enemy = target["owner"] not in (-1, player)
-
-    owner_bonus = NEUTRAL_BONUS if target["owner"] == -1 else ENEMY_BONUS
-    pressure_bonus = min(PRESSURE_MAX, step / PRESSURE_DIVISOR) if is_enemy else 0
-    production_weight = HIGH_PRODUCTION_WEIGHT if high_production else PRODUCTION_WEIGHT
-    distance_weight = HIGH_DISTANCE_WEIGHT if high_production else DISTANCE_WEIGHT
-    ship_weight = HIGH_SHIP_WEIGHT if high_production else SHIP_WEIGHT
-
-    return (
-        target["production"] * production_weight
-        + owner_bonus
-        + pressure_bonus
-        - distance * distance_weight
-        - needed * ship_weight
-    )
-
-
-def ships_to_send(src, target, player, assigned):
-    reserve = max(MIN_RESERVE, int(src["production"] * RESERVE_PROD_MULT))
-    available = int(src["ships"] - reserve)
-
-    if available <= 0:
-        return 0
-
-    needed = capture_cost(target, player, assigned)
-    return min(available, needed)
-
-
-def agent(obs):
-    player = obs.get("player", 0)
-    step = obs.get("step", 0)
-    planets = [parse_planet(planet) for planet in obs.get("planets", [])]
-
-    my_planets = [planet for planet in planets if planet["owner"] == player]
-    targets = [planet for planet in planets if planet["owner"] != player]
-
-    my_planets.sort(key=lambda planet: planet["ships"], reverse=True)
-
-    moves = []
-    assigned = {{}}
-
-    for src in my_planets:
-        if src["ships"] < MIN_SHIPS or not targets:
-            continue
-
-        target = max(
-            targets,
-            key=lambda candidate: target_score(src, candidate, player, step, assigned),
-        )
-        score = target_score(src, target, player, step, assigned)
-
-        if score < 0:
-            continue
-
-        send = ships_to_send(src, target, player, assigned)
-        if send <= target["ships"] - assigned.get(target["id"], 0):
-            continue
-
-        angle = math.atan2(target["y"] - src["y"], target["x"] - src["x"])
-        moves.append([src["id"], angle, send])
-        assigned[target["id"]] = assigned.get(target["id"], 0) + send
-
-    return moves
-'''
+TEMPLATE = build_template()
 
 
 CANDIDATES = {
