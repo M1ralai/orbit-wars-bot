@@ -1,5 +1,6 @@
 import argparse
 import contextlib
+import importlib.util
 import json
 import logging
 import os
@@ -11,6 +12,26 @@ logging.getLogger("kaggle_environments").setLevel(logging.ERROR)
 with open(os.devnull, "w", encoding="utf-8") as devnull:
     with contextlib.redirect_stdout(devnull), contextlib.redirect_stderr(devnull):
         from kaggle_environments import make
+
+
+# ── Agent loader cache ──────────────────────────────────────────────
+_agent_cache = {}
+
+
+def load_agent_fn(path):
+    """Load an agent file and return its agent() function, cached."""
+    path = str(path)
+    if path in _agent_cache:
+        return _agent_cache[path]
+    if path in ("random",):
+        _agent_cache[path] = path
+        return path
+    spec = importlib.util.spec_from_file_location(f"_agent_{len(_agent_cache)}", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    fn = mod.agent
+    _agent_cache[path] = fn
+    return fn
 
 AGENTS = {
     "main": "main.py",
@@ -124,9 +145,92 @@ def result_from_final(final):
     return "DRAW"
 
 
-def run_match(agent_a, agent_b, seed, names=None, include_timeline=False):
+def _to_dict(obj):
+    """Convert a kaggle Struct/observation to a plain dict recursively."""
+    if isinstance(obj, dict):
+        return {k: _to_dict(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_to_dict(i) for i in obj]
+    if hasattr(obj, '__dict__') and not isinstance(obj, type):
+        return {k: _to_dict(v) for k, v in obj.__dict__.items() if not k.startswith('_')}
+    return obj
+
+
+def run_match_fast(agent_a, agent_b, seed, names=None):
+    """Run a match using manual step loop with dict observations (2.7x faster)."""
+    fn_a = load_agent_fn(agent_a) if isinstance(agent_a, str) else agent_a
+    fn_b = load_agent_fn(agent_b) if isinstance(agent_b, str) else agent_b
+
     env = make("orbit_wars", configuration={"seed": seed}, debug=False)
-    env.run([agent_a, agent_b])
+    env.reset()
+
+    agents = [fn_a, fn_b]
+    step_count = 0
+    a_error = False
+    b_error = False
+
+    while not env.done:
+        actions = []
+        for i, agent_state in enumerate(env.state):
+            obs = agent_state.observation
+            obs_dict = _to_dict(obs) if not isinstance(obs, dict) else obs
+            try:
+                action = agents[i](obs_dict)
+            except Exception:
+                action = []
+                if i == 0:
+                    a_error = True
+                else:
+                    b_error = True
+            actions.append(action)
+        env.step(actions)
+        step_count += 1
+
+    final = env.steps[-1]
+    a = final[0]
+    b = final[1]
+    observation = getattr(a, "observation", {}) or {}
+    obs_dict = _to_dict(observation) if not isinstance(observation, dict) else observation
+
+    if a_error:
+        result = "A_ERROR"
+    elif b_error:
+        result = "B_ERROR"
+    else:
+        result = result_from_final(final)
+
+    return {
+        "seed": seed,
+        "agents": {
+            "a": names[0] if names else str(agent_a),
+            "b": names[1] if names else str(agent_b),
+        },
+        "result": result,
+        "winner": "a" if result == "A_WIN" else "b" if result == "B_WIN" else None,
+        "turns": step_count,
+        "rewards": {
+            "a": a.reward,
+            "b": b.reward,
+        },
+        "statuses": {
+            "a": a.status,
+            "b": b.status,
+        },
+        "final": owner_stats(obs_dict),
+    }
+
+
+def run_match(agent_a, agent_b, seed, names=None, include_timeline=False):
+    """Run a match. Uses fast path unless timeline is requested."""
+    if not include_timeline:
+        return run_match_fast(agent_a, agent_b, seed, names=names)
+
+    # Slow path: need env.run() for full step history
+    fn_a = load_agent_fn(agent_a) if isinstance(agent_a, str) else agent_a
+    fn_b = load_agent_fn(agent_b) if isinstance(agent_b, str) else agent_b
+
+    env = make("orbit_wars", configuration={"seed": seed}, debug=False)
+    env.run([fn_a, fn_b])
 
     final = env.steps[-1]
     a = final[0]
@@ -137,8 +241,8 @@ def run_match(agent_a, agent_b, seed, names=None, include_timeline=False):
     record = {
         "seed": seed,
         "agents": {
-            "a": names[0] if names else agent_a,
-            "b": names[1] if names else agent_b,
+            "a": names[0] if names else str(agent_a),
+            "b": names[1] if names else str(agent_b),
         },
         "result": result,
         "winner": "a" if result == "A_WIN" else "b" if result == "B_WIN" else None,

@@ -24,14 +24,14 @@ echo ""
 exec "$PYTHON_BIN" families/hybrid/tools/auto_iterate.py \
   --continuous \
   --candidates-per-round 16 \
-  --finalists 6 \
+  --finalists 4 \
   --smoke-seeds 6 \
-  --validation-seeds 30 \
-  --workers 8 \
-  --ml-ranker \
+  --validation-seeds 16 \
+  --workers 4 \
+  --no-ml-ranker \
   --ml-min-samples 20 \
   --ml-min-games 10 \
-  --ml-pool-size 512 \
+  --ml-pool-size 256 \
   --ml-exploration-rate 0.20 \
   --base-mode champion \
   --output-dir runs/lineage \
@@ -40,8 +40,9 @@ exec "$PYTHON_BIN" families/hybrid/tools/auto_iterate.py \
   --ml-dataset-path training/lineage/ml_dataset.jsonl \
   --ml-model-path training/lineage/ml_ranker.joblib \
   --ml-priors-path training/lineage/adaptive_priors.json \
-  --smoke-min-winrate 0.30 \
-  --sleep-seconds 30 \
-  --opponents champion \
+  --smoke-min-winrate 0.50 \
+  --sleep-seconds 0 \
+  --opponents "$CW_BEST" "$ROOT_BEST" \
   --min-winrate 0.54 \
-  --min-opponent-winrate 0.53
+  --min-opponent-winrate 0.53 \
+  --min-validation-games 30

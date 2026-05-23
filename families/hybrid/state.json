@@ -1,9 +1,13 @@
 {
-  "best_version": "hybrid_genesis_v000",
-  "best_version_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/versions/hybrid_genesis_v000.py",
+  "best_version": "auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+  "best_version_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/versions/auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py",
+  "last_package_main": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/submission_package/main.py",
+  "last_promotion_at": "2026-05-23T15:16:16.569600+00:00",
+  "last_round_at": "2026-05-23T18:07:41.641256+00:00",
+  "last_round_report": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0036_20260523_180437/round_report.json",
   "lineage_mode": "champion",
   "lineage_started_at": "2026-05-23T13:51:38Z",
-  "promotions": 0,
-  "round": 0,
+  "promotions": 4,
+  "round": 36,
   "submissions": 0
 }

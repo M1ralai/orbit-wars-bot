@@ -1,0 +1,1631 @@
+{
+  "adaptive_mutation": {
+    "down": [
+      "short_hop_range",
+      "sync_min_target_prod",
+      "snipe_overkill",
+      "feint_min_margin",
+      "reserve_prod_mult",
+      "max_attacks_per_turn",
+      "comet_bonus",
+      "min_reserve"
+    ],
+    "enabled": true,
+    "history_rounds": 3,
+    "parameter_count": 21,
+    "reports_used": 3,
+    "strength": 0.65,
+    "up": [
+      "counter_attack_bonus",
+      "overkill",
+      "high_prod_extra",
+      "min_ships",
+      "honeypot_reserve",
+      "neutral_bonus",
+      "neutral_tax",
+      "attack_fraction"
+    ],
+    "validated_candidates": 48
+  },
+  "best": {
+    "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+    "ml_model_samples": 48,
+    "ml_rank": 4,
+    "ml_score": 0.682396,
+    "ml_selected": true,
+    "name": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+    "params": {
+      "attack_fraction": 0.9301,
+      "comet_bonus": 11,
+      "counter_attack_bonus": 36.9549,
+      "counter_bonus": 15,
+      "defense_worth_factor": 11.1321,
+      "distance_weight": 2.3071,
+      "enemy_bonus": 27,
+      "enemy_extra": 5,
+      "enemy_weak_bonus": 1.6078,
+      "evac_eta_threshold": 3.3857,
+      "evac_minor_prod": 3,
+      "feint_interval": 10,
+      "feint_min_margin": 1,
+      "high_distance_weight": 1.8908,
+      "high_prod_extra": 5,
+      "high_prod_tax": 7,
+      "high_production_weight": 46,
+      "high_ship_weight": 0.8955,
+      "honeypot_min_prod": 5,
+      "honeypot_reserve": 10,
+      "max_attacks_per_turn": 4,
+      "min_reserve": 2,
+      "min_ships": 20,
+      "neutral_bonus": 26,
+      "neutral_tax": 8,
+      "overkill": 8,
+      "panic_reserve_mult": 0.8076,
+      "pressure_divisor": 40,
+      "pressure_max": 18,
+      "production_forecast_mult": 1.2215,
+      "production_weight": 44,
+      "reserve_prod_mult": 1.8962,
+      "ship_weight": 1.3952,
+      "short_hop_bonus": 0.1605,
+      "short_hop_range": 19,
+      "snipe_max_step": 88,
+      "snipe_overkill": 1,
+      "staging_penalty": 16.5168,
+      "sync_max_eta": 10.3448,
+      "sync_min_target_prod": 1,
+      "sync_min_target_ships": 37
+    },
+    "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+  },
+  "best_summary": {
+    "avg_production_delta": 40.72,
+    "avg_ship_delta": 3457.95,
+    "by_opponent": {
+      "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+        "avg_production_delta": 40.72,
+        "avg_ship_delta": 3457.95,
+        "errors": 0,
+        "games": 60,
+        "losses": 11,
+        "winrate": 0.8167,
+        "wins": 49
+      }
+    },
+    "draws": 0,
+    "error_seeds": [],
+    "errors": 0,
+    "games": 60,
+    "loss_seeds": [
+      41001,
+      41006,
+      41007,
+      41007,
+      41009,
+      41013,
+      41013,
+      41015,
+      41022,
+      41022,
+      41028
+    ],
+    "losses": 11,
+    "score": 0.9567,
+    "winrate": 0.8167,
+    "wins": 49
+  },
+  "candidate_bases": {
+    "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": 16
+  },
+  "finalist_bases": {
+    "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": 6
+  },
+  "gate": {
+    "passed": true,
+    "reason": "passed gate and won playoff from 4 entrants"
+  },
+  "generated_at": "20260523_150404",
+  "lineage_base": {
+    "champion": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+    "champion_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/versions/auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py",
+    "mode": "champion",
+    "using_only_champion": true
+  },
+  "ml_ranker": {
+    "enabled": true,
+    "exploit_count": 13,
+    "exploration_count": 3,
+    "metadata": {
+      "dataset_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_dataset.jsonl",
+      "features": 205,
+      "holdout": {},
+      "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_ranker.joblib",
+      "priors_enabled": true,
+      "priors_parameter_count": 21,
+      "priors_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/adaptive_priors.json",
+      "samples": 48,
+      "sklearn_version": "1.8.0",
+      "target": "quality = winrate * 0.7 + score * 0.3",
+      "trained": true
+    },
+    "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_ranker.joblib",
+    "pool_size": 512,
+    "selected": [
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 1,
+        "ml_score": 0.693333,
+        "name": "auto_r0004_006_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 2,
+        "ml_score": 0.688254,
+        "name": "auto_r0004_407_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 3,
+        "ml_score": 0.684891,
+        "name": "auto_r0004_239_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 4,
+        "ml_score": 0.682396,
+        "name": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 5,
+        "ml_score": 0.679715,
+        "name": "auto_r0004_321_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 6,
+        "ml_score": 0.678635,
+        "name": "auto_r0004_488_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 7,
+        "ml_score": 0.674646,
+        "name": "auto_r0004_324_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 8,
+        "ml_score": 0.673683,
+        "name": "auto_r0004_441_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 9,
+        "ml_score": 0.669361,
+        "name": "auto_r0004_503_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 10,
+        "ml_score": 0.668609,
+        "name": "auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 11,
+        "ml_score": 0.66839,
+        "name": "auto_r0004_378_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 12,
+        "ml_score": 0.666976,
+        "name": "auto_r0004_238_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 13,
+        "ml_score": 0.66524,
+        "name": "auto_r0004_371_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 131,
+        "ml_score": 0.607768,
+        "name": "auto_r0004_393_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 215,
+        "ml_score": 0.59026,
+        "name": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 244,
+        "ml_score": 0.585071,
+        "name": "auto_r0004_118_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      }
+    ],
+    "selected_count": 16,
+    "top": [
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 1,
+        "ml_score": 0.693333,
+        "name": "auto_r0004_006_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 2,
+        "ml_score": 0.688254,
+        "name": "auto_r0004_407_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 3,
+        "ml_score": 0.684891,
+        "name": "auto_r0004_239_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 4,
+        "ml_score": 0.682396,
+        "name": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 5,
+        "ml_score": 0.679715,
+        "name": "auto_r0004_321_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 6,
+        "ml_score": 0.678635,
+        "name": "auto_r0004_488_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 7,
+        "ml_score": 0.674646,
+        "name": "auto_r0004_324_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 8,
+        "ml_score": 0.673683,
+        "name": "auto_r0004_441_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 9,
+        "ml_score": 0.669361,
+        "name": "auto_r0004_503_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "ml_rank": 10,
+        "ml_score": 0.668609,
+        "name": "auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+      }
+    ],
+    "train": {
+      "dataset_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_dataset.jsonl",
+      "features": 205,
+      "holdout": {},
+      "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_ranker.joblib",
+      "priors_enabled": true,
+      "priors_parameter_count": 21,
+      "priors_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/adaptive_priors.json",
+      "samples": 48,
+      "sklearn_version": "1.8.0",
+      "target": "quality = winrate * 0.7 + score * 0.3",
+      "trained": true
+    },
+    "used": true
+  },
+  "opponents": [
+    "champion"
+  ],
+  "playoff": {
+    "champion": {
+      "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "name": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "params": {
+        "attack_fraction": 0.9282,
+        "comet_bonus": 13,
+        "counter_attack_bonus": 36.9549,
+        "counter_bonus": 16,
+        "defense_worth_factor": 11.1321,
+        "distance_weight": 2.4926,
+        "enemy_bonus": 26,
+        "enemy_extra": 6,
+        "enemy_weak_bonus": 1.1768,
+        "evac_eta_threshold": 3.0835,
+        "evac_minor_prod": 3,
+        "feint_interval": 5,
+        "feint_min_margin": 1,
+        "high_distance_weight": 1.8908,
+        "high_prod_extra": 3,
+        "high_prod_tax": 4,
+        "high_production_weight": 48,
+        "high_ship_weight": 0.6806,
+        "honeypot_min_prod": 4,
+        "honeypot_reserve": 6,
+        "max_attacks_per_turn": 6,
+        "min_reserve": 3,
+        "min_ships": 20,
+        "neutral_bonus": 25,
+        "neutral_tax": 9,
+        "overkill": 3,
+        "panic_reserve_mult": 0.8678,
+        "pressure_divisor": 37,
+        "pressure_max": 21,
+        "production_forecast_mult": 1.0616,
+        "production_weight": 48,
+        "reserve_prod_mult": 1.5,
+        "ship_weight": 1.2486,
+        "short_hop_bonus": 0.2817,
+        "short_hop_range": 17,
+        "snipe_max_step": 88,
+        "snipe_overkill": 1,
+        "staging_penalty": 11.876,
+        "sync_max_eta": 8.7991,
+        "sync_min_target_prod": 1,
+        "sync_min_target_ships": 34
+      },
+      "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+    },
+    "enabled": true,
+    "played": true,
+    "qualified": [
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "name": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "params": {
+          "attack_fraction": 0.9301,
+          "comet_bonus": 11,
+          "counter_attack_bonus": 36.9549,
+          "counter_bonus": 15,
+          "defense_worth_factor": 11.1321,
+          "distance_weight": 2.3071,
+          "enemy_bonus": 27,
+          "enemy_extra": 5,
+          "enemy_weak_bonus": 1.6078,
+          "evac_eta_threshold": 3.3857,
+          "evac_minor_prod": 3,
+          "feint_interval": 10,
+          "feint_min_margin": 1,
+          "high_distance_weight": 1.8908,
+          "high_prod_extra": 5,
+          "high_prod_tax": 7,
+          "high_production_weight": 46,
+          "high_ship_weight": 0.8955,
+          "honeypot_min_prod": 5,
+          "honeypot_reserve": 10,
+          "max_attacks_per_turn": 4,
+          "min_reserve": 2,
+          "min_ships": 20,
+          "neutral_bonus": 26,
+          "neutral_tax": 8,
+          "overkill": 8,
+          "panic_reserve_mult": 0.8076,
+          "pressure_divisor": 40,
+          "pressure_max": 18,
+          "production_forecast_mult": 1.2215,
+          "production_weight": 44,
+          "reserve_prod_mult": 1.8962,
+          "ship_weight": 1.3952,
+          "short_hop_bonus": 0.1605,
+          "short_hop_range": 19,
+          "snipe_max_step": 88,
+          "snipe_overkill": 1,
+          "staging_penalty": 16.5168,
+          "sync_max_eta": 10.3448,
+          "sync_min_target_prod": 1,
+          "sync_min_target_ships": 37
+        },
+        "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "name": "auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "params": {
+          "attack_fraction": 0.8969,
+          "comet_bonus": 13,
+          "counter_attack_bonus": 36.95,
+          "counter_bonus": 16,
+          "defense_worth_factor": 9.3458,
+          "distance_weight": 2.3826,
+          "enemy_bonus": 31,
+          "enemy_extra": 6,
+          "enemy_weak_bonus": 1.3627,
+          "evac_eta_threshold": 3.1404,
+          "evac_minor_prod": 3,
+          "feint_interval": 9,
+          "feint_min_margin": 1,
+          "high_distance_weight": 1.8562,
+          "high_prod_extra": 5,
+          "high_prod_tax": 5,
+          "high_production_weight": 47,
+          "high_ship_weight": 1.0564,
+          "honeypot_min_prod": 3,
+          "honeypot_reserve": 6,
+          "max_attacks_per_turn": 4,
+          "min_reserve": 2,
+          "min_ships": 19,
+          "neutral_bonus": 26,
+          "neutral_tax": 6,
+          "overkill": 8,
+          "panic_reserve_mult": 0.8794,
+          "pressure_divisor": 34,
+          "pressure_max": 18,
+          "production_forecast_mult": 1.1492,
+          "production_weight": 44,
+          "reserve_prod_mult": 1.5,
+          "ship_weight": 1.2486,
+          "short_hop_bonus": 0.2817,
+          "short_hop_range": 18,
+          "snipe_max_step": 94,
+          "snipe_overkill": 3,
+          "staging_penalty": 17.1537,
+          "sync_max_eta": 9.9748,
+          "sync_min_target_prod": 1,
+          "sync_min_target_ships": 34
+        },
+        "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "name": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "params": {
+          "attack_fraction": 0.9282,
+          "comet_bonus": 13,
+          "counter_attack_bonus": 36.9549,
+          "counter_bonus": 16,
+          "defense_worth_factor": 11.1321,
+          "distance_weight": 2.4926,
+          "enemy_bonus": 26,
+          "enemy_extra": 6,
+          "enemy_weak_bonus": 1.1768,
+          "evac_eta_threshold": 3.0835,
+          "evac_minor_prod": 3,
+          "feint_interval": 5,
+          "feint_min_margin": 1,
+          "high_distance_weight": 1.8908,
+          "high_prod_extra": 3,
+          "high_prod_tax": 4,
+          "high_production_weight": 48,
+          "high_ship_weight": 0.6806,
+          "honeypot_min_prod": 4,
+          "honeypot_reserve": 6,
+          "max_attacks_per_turn": 6,
+          "min_reserve": 3,
+          "min_ships": 20,
+          "neutral_bonus": 25,
+          "neutral_tax": 9,
+          "overkill": 3,
+          "panic_reserve_mult": 0.8678,
+          "pressure_divisor": 37,
+          "pressure_max": 21,
+          "production_forecast_mult": 1.0616,
+          "production_weight": 48,
+          "reserve_prod_mult": 1.5,
+          "ship_weight": 1.2486,
+          "short_hop_bonus": 0.2817,
+          "short_hop_range": 17,
+          "snipe_max_step": 88,
+          "snipe_overkill": 1,
+          "staging_penalty": 11.876,
+          "sync_max_eta": 8.7991,
+          "sync_min_target_prod": 1,
+          "sync_min_target_ships": 34
+        },
+        "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+      },
+      {
+        "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "name": "auto_r0004_393_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "params": {
+          "attack_fraction": 0.9199,
+          "comet_bonus": 14,
+          "counter_attack_bonus": 39.2814,
+          "counter_bonus": 16,
+          "defense_worth_factor": 9.4302,
+          "distance_weight": 2.6472,
+          "enemy_bonus": 28,
+          "enemy_extra": 3,
+          "enemy_weak_bonus": 1.1353,
+          "evac_eta_threshold": 3.3857,
+          "evac_minor_prod": 2,
+          "feint_interval": 9,
+          "feint_min_margin": 1,
+          "high_distance_weight": 1.8908,
+          "high_prod_extra": 3,
+          "high_prod_tax": 5,
+          "high_production_weight": 45,
+          "high_ship_weight": 0.9863,
+          "honeypot_min_prod": 2,
+          "honeypot_reserve": 8,
+          "max_attacks_per_turn": 7,
+          "min_reserve": 4,
+          "min_ships": 20,
+          "neutral_bonus": 28,
+          "neutral_tax": 8,
+          "overkill": 7,
+          "panic_reserve_mult": 0.7814,
+          "pressure_divisor": 36,
+          "pressure_max": 16,
+          "production_forecast_mult": 1.1492,
+          "production_weight": 40,
+          "reserve_prod_mult": 1.5,
+          "ship_weight": 1.0948,
+          "short_hop_bonus": 0.1024,
+          "short_hop_range": 18,
+          "snipe_max_step": 91,
+          "snipe_overkill": 4,
+          "staging_penalty": 14.6253,
+          "sync_max_eta": 8.5844,
+          "sync_min_target_prod": 1,
+          "sync_min_target_ships": 28
+        },
+        "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_393_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+      }
+    ],
+    "qualified_count": 4,
+    "rounds": [
+      {
+        "entrants": [
+          {
+            "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.9301,
+              "comet_bonus": 11,
+              "counter_attack_bonus": 36.9549,
+              "counter_bonus": 15,
+              "defense_worth_factor": 11.1321,
+              "distance_weight": 2.3071,
+              "enemy_bonus": 27,
+              "enemy_extra": 5,
+              "enemy_weak_bonus": 1.6078,
+              "evac_eta_threshold": 3.3857,
+              "evac_minor_prod": 3,
+              "feint_interval": 10,
+              "feint_min_margin": 1,
+              "high_distance_weight": 1.8908,
+              "high_prod_extra": 5,
+              "high_prod_tax": 7,
+              "high_production_weight": 46,
+              "high_ship_weight": 0.8955,
+              "honeypot_min_prod": 5,
+              "honeypot_reserve": 10,
+              "max_attacks_per_turn": 4,
+              "min_reserve": 2,
+              "min_ships": 20,
+              "neutral_bonus": 26,
+              "neutral_tax": 8,
+              "overkill": 8,
+              "panic_reserve_mult": 0.8076,
+              "pressure_divisor": 40,
+              "pressure_max": 18,
+              "production_forecast_mult": 1.2215,
+              "production_weight": 44,
+              "reserve_prod_mult": 1.8962,
+              "ship_weight": 1.3952,
+              "short_hop_bonus": 0.1605,
+              "short_hop_range": 19,
+              "snipe_max_step": 88,
+              "snipe_overkill": 1,
+              "staging_penalty": 16.5168,
+              "sync_max_eta": 10.3448,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 37
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+          },
+          {
+            "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.8969,
+              "comet_bonus": 13,
+              "counter_attack_bonus": 36.95,
+              "counter_bonus": 16,
+              "defense_worth_factor": 9.3458,
+              "distance_weight": 2.3826,
+              "enemy_bonus": 31,
+              "enemy_extra": 6,
+              "enemy_weak_bonus": 1.3627,
+              "evac_eta_threshold": 3.1404,
+              "evac_minor_prod": 3,
+              "feint_interval": 9,
+              "feint_min_margin": 1,
+              "high_distance_weight": 1.8562,
+              "high_prod_extra": 5,
+              "high_prod_tax": 5,
+              "high_production_weight": 47,
+              "high_ship_weight": 1.0564,
+              "honeypot_min_prod": 3,
+              "honeypot_reserve": 6,
+              "max_attacks_per_turn": 4,
+              "min_reserve": 2,
+              "min_ships": 19,
+              "neutral_bonus": 26,
+              "neutral_tax": 6,
+              "overkill": 8,
+              "panic_reserve_mult": 0.8794,
+              "pressure_divisor": 34,
+              "pressure_max": 18,
+              "production_forecast_mult": 1.1492,
+              "production_weight": 44,
+              "reserve_prod_mult": 1.5,
+              "ship_weight": 1.2486,
+              "short_hop_bonus": 0.2817,
+              "short_hop_range": 18,
+              "snipe_max_step": 94,
+              "snipe_overkill": 3,
+              "staging_penalty": 17.1537,
+              "sync_max_eta": 9.9748,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 34
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+          },
+          {
+            "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.9282,
+              "comet_bonus": 13,
+              "counter_attack_bonus": 36.9549,
+              "counter_bonus": 16,
+              "defense_worth_factor": 11.1321,
+              "distance_weight": 2.4926,
+              "enemy_bonus": 26,
+              "enemy_extra": 6,
+              "enemy_weak_bonus": 1.1768,
+              "evac_eta_threshold": 3.0835,
+              "evac_minor_prod": 3,
+              "feint_interval": 5,
+              "feint_min_margin": 1,
+              "high_distance_weight": 1.8908,
+              "high_prod_extra": 3,
+              "high_prod_tax": 4,
+              "high_production_weight": 48,
+              "high_ship_weight": 0.6806,
+              "honeypot_min_prod": 4,
+              "honeypot_reserve": 6,
+              "max_attacks_per_turn": 6,
+              "min_reserve": 3,
+              "min_ships": 20,
+              "neutral_bonus": 25,
+              "neutral_tax": 9,
+              "overkill": 3,
+              "panic_reserve_mult": 0.8678,
+              "pressure_divisor": 37,
+              "pressure_max": 21,
+              "production_forecast_mult": 1.0616,
+              "production_weight": 48,
+              "reserve_prod_mult": 1.5,
+              "ship_weight": 1.2486,
+              "short_hop_bonus": 0.2817,
+              "short_hop_range": 17,
+              "snipe_max_step": 88,
+              "snipe_overkill": 1,
+              "staging_penalty": 11.876,
+              "sync_max_eta": 8.7991,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 34
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+          },
+          {
+            "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0004_393_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.9199,
+              "comet_bonus": 14,
+              "counter_attack_bonus": 39.2814,
+              "counter_bonus": 16,
+              "defense_worth_factor": 9.4302,
+              "distance_weight": 2.6472,
+              "enemy_bonus": 28,
+              "enemy_extra": 3,
+              "enemy_weak_bonus": 1.1353,
+              "evac_eta_threshold": 3.3857,
+              "evac_minor_prod": 2,
+              "feint_interval": 9,
+              "feint_min_margin": 1,
+              "high_distance_weight": 1.8908,
+              "high_prod_extra": 3,
+              "high_prod_tax": 5,
+              "high_production_weight": 45,
+              "high_ship_weight": 0.9863,
+              "honeypot_min_prod": 2,
+              "honeypot_reserve": 8,
+              "max_attacks_per_turn": 7,
+              "min_reserve": 4,
+              "min_ships": 20,
+              "neutral_bonus": 28,
+              "neutral_tax": 8,
+              "overkill": 7,
+              "panic_reserve_mult": 0.7814,
+              "pressure_divisor": 36,
+              "pressure_max": 16,
+              "production_forecast_mult": 1.1492,
+              "production_weight": 40,
+              "reserve_prod_mult": 1.5,
+              "ship_weight": 1.0948,
+              "short_hop_bonus": 0.1024,
+              "short_hop_range": 18,
+              "snipe_max_step": 91,
+              "snipe_overkill": 4,
+              "staging_penalty": 14.6253,
+              "sync_max_eta": 8.5844,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 28
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_393_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+          }
+        ],
+        "matches": [
+          {
+            "a": {
+              "avg_production_delta": 27.67,
+              "avg_ship_delta": 2114.42,
+              "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 3,
+              "score": 0.89,
+              "winrate": 0.75,
+              "wins": 9
+            },
+            "b": {
+              "avg_production_delta": -27.67,
+              "avg_ship_delta": -2114.42,
+              "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0004_393_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 9,
+              "score": 0.11,
+              "winrate": 0.25,
+              "wins": 3
+            },
+            "loser": "auto_r0004_393_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "match": {
+              "match": 1,
+              "round": 1,
+              "seed_start": 43100,
+              "seeds": 6,
+              "workers": 8
+            },
+            "winner": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+          },
+          {
+            "a": {
+              "avg_production_delta": -11.92,
+              "avg_ship_delta": -1050.42,
+              "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 7,
+              "score": 0.2767,
+              "winrate": 0.4167,
+              "wins": 5
+            },
+            "b": {
+              "avg_production_delta": 11.92,
+              "avg_ship_delta": 1050.42,
+              "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 5,
+              "score": 0.7233,
+              "winrate": 0.5833,
+              "wins": 7
+            },
+            "loser": "auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "match": {
+              "match": 2,
+              "round": 1,
+              "seed_start": 43200,
+              "seeds": 6,
+              "workers": 8
+            },
+            "winner": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+          }
+        ],
+        "round": 1
+      },
+      {
+        "entrants": [
+          {
+            "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.9301,
+              "comet_bonus": 11,
+              "counter_attack_bonus": 36.9549,
+              "counter_bonus": 15,
+              "defense_worth_factor": 11.1321,
+              "distance_weight": 2.3071,
+              "enemy_bonus": 27,
+              "enemy_extra": 5,
+              "enemy_weak_bonus": 1.6078,
+              "evac_eta_threshold": 3.3857,
+              "evac_minor_prod": 3,
+              "feint_interval": 10,
+              "feint_min_margin": 1,
+              "high_distance_weight": 1.8908,
+              "high_prod_extra": 5,
+              "high_prod_tax": 7,
+              "high_production_weight": 46,
+              "high_ship_weight": 0.8955,
+              "honeypot_min_prod": 5,
+              "honeypot_reserve": 10,
+              "max_attacks_per_turn": 4,
+              "min_reserve": 2,
+              "min_ships": 20,
+              "neutral_bonus": 26,
+              "neutral_tax": 8,
+              "overkill": 8,
+              "panic_reserve_mult": 0.8076,
+              "pressure_divisor": 40,
+              "pressure_max": 18,
+              "production_forecast_mult": 1.2215,
+              "production_weight": 44,
+              "reserve_prod_mult": 1.8962,
+              "ship_weight": 1.3952,
+              "short_hop_bonus": 0.1605,
+              "short_hop_range": 19,
+              "snipe_max_step": 88,
+              "snipe_overkill": 1,
+              "staging_penalty": 16.5168,
+              "sync_max_eta": 10.3448,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 37
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+          },
+          {
+            "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.9282,
+              "comet_bonus": 13,
+              "counter_attack_bonus": 36.9549,
+              "counter_bonus": 16,
+              "defense_worth_factor": 11.1321,
+              "distance_weight": 2.4926,
+              "enemy_bonus": 26,
+              "enemy_extra": 6,
+              "enemy_weak_bonus": 1.1768,
+              "evac_eta_threshold": 3.0835,
+              "evac_minor_prod": 3,
+              "feint_interval": 5,
+              "feint_min_margin": 1,
+              "high_distance_weight": 1.8908,
+              "high_prod_extra": 3,
+              "high_prod_tax": 4,
+              "high_production_weight": 48,
+              "high_ship_weight": 0.6806,
+              "honeypot_min_prod": 4,
+              "honeypot_reserve": 6,
+              "max_attacks_per_turn": 6,
+              "min_reserve": 3,
+              "min_ships": 20,
+              "neutral_bonus": 25,
+              "neutral_tax": 9,
+              "overkill": 3,
+              "panic_reserve_mult": 0.8678,
+              "pressure_divisor": 37,
+              "pressure_max": 21,
+              "production_forecast_mult": 1.0616,
+              "production_weight": 48,
+              "reserve_prod_mult": 1.5,
+              "ship_weight": 1.2486,
+              "short_hop_bonus": 0.2817,
+              "short_hop_range": 17,
+              "snipe_max_step": 88,
+              "snipe_overkill": 1,
+              "staging_penalty": 11.876,
+              "sync_max_eta": 8.7991,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 34
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0004_20260523_150404/candidates/auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+          }
+        ],
+        "matches": [
+          {
+            "a": {
+              "avg_production_delta": -44.67,
+              "avg_ship_delta": -2937.25,
+              "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 9,
+              "score": 0.11,
+              "winrate": 0.25,
+              "wins": 3
+            },
+            "b": {
+              "avg_production_delta": 44.67,
+              "avg_ship_delta": 2937.25,
+              "base": "hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 3,
+              "score": 0.89,
+              "winrate": 0.75,
+              "wins": 9
+            },
+            "loser": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "match": {
+              "match": 1,
+              "round": 2,
+              "seed_start": 44100,
+              "seeds": 6,
+              "workers": 8
+            },
+            "winner": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+          }
+        ],
+        "round": 2
+      }
+    ],
+    "telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/telemetry/lineage/round_0004_playoff.jsonl"
+  },
+  "promotion": {
+    "candidate": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+    "submit": {
+      "reason": "submit disabled",
+      "status": "skipped"
+    },
+    "version_name": "auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+    "version_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/versions/auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+  },
+  "replay_signal": {
+    "base_count": 0,
+    "base_names": [],
+    "examples": 0,
+    "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/replay_signals.json",
+    "phase_rates": {},
+    "target_owner_rates": {}
+  },
+  "round": 4,
+  "smoke_telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/telemetry/lineage/round_0004_smoke.jsonl",
+  "validated_finalists": [
+    {
+      "candidate": "auto_r0004_315_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": true,
+      "reason": "passed",
+      "summary": {
+        "avg_production_delta": 40.72,
+        "avg_ship_delta": 3457.95,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 40.72,
+            "avg_ship_delta": 3457.95,
+            "errors": 0,
+            "games": 60,
+            "losses": 11,
+            "winrate": 0.8167,
+            "wins": 49
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          41001,
+          41006,
+          41007,
+          41007,
+          41009,
+          41013,
+          41013,
+          41015,
+          41022,
+          41022,
+          41028
+        ],
+        "losses": 11,
+        "score": 0.9567,
+        "winrate": 0.8167,
+        "wins": 49
+      }
+    },
+    {
+      "candidate": "auto_r0004_417_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": true,
+      "reason": "passed",
+      "summary": {
+        "avg_production_delta": 45.47,
+        "avg_ship_delta": 3554.7,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 45.47,
+            "avg_ship_delta": 3554.7,
+            "errors": 0,
+            "games": 60,
+            "losses": 11,
+            "winrate": 0.8167,
+            "wins": 49
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          41003,
+          41003,
+          41011,
+          41011,
+          41013,
+          41013,
+          41014,
+          41014,
+          41027,
+          41023,
+          41027
+        ],
+        "losses": 11,
+        "score": 0.9567,
+        "winrate": 0.8167,
+        "wins": 49
+      }
+    },
+    {
+      "candidate": "auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": true,
+      "reason": "passed",
+      "summary": {
+        "avg_production_delta": 40.5,
+        "avg_ship_delta": 3426.12,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 40.5,
+            "avg_ship_delta": 3426.12,
+            "errors": 0,
+            "games": 60,
+            "losses": 13,
+            "winrate": 0.7833,
+            "wins": 47
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          41003,
+          41003,
+          41009,
+          41006,
+          41014,
+          41014,
+          41018,
+          41020,
+          41022,
+          41022,
+          41023,
+          41023
+        ],
+        "losses": 13,
+        "score": 0.9233,
+        "winrate": 0.7833,
+        "wins": 47
+      }
+    },
+    {
+      "candidate": "auto_r0004_393_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": true,
+      "reason": "passed",
+      "summary": {
+        "avg_production_delta": 21.08,
+        "avg_ship_delta": 1774.87,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 21.08,
+            "avg_ship_delta": 1774.87,
+            "errors": 0,
+            "games": 60,
+            "losses": 22,
+            "winrate": 0.6333,
+            "wins": 38
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          41000,
+          41004,
+          41003,
+          41006,
+          41003,
+          41006,
+          41005,
+          41005,
+          41011,
+          41011,
+          41009,
+          41016
+        ],
+        "losses": 22,
+        "score": 0.7733,
+        "winrate": 0.6333,
+        "wins": 38
+      }
+    },
+    {
+      "candidate": "auto_r0004_378_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "winrate below 0.54",
+      "summary": {
+        "avg_production_delta": 0.03,
+        "avg_ship_delta": 76.65,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 0.03,
+            "avg_ship_delta": 76.65,
+            "errors": 0,
+            "games": 60,
+            "losses": 29,
+            "winrate": 0.5167,
+            "wins": 31
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          41001,
+          41001,
+          41004,
+          41004,
+          41007,
+          41007,
+          41006,
+          41006,
+          41010,
+          41010,
+          41009,
+          41011
+        ],
+        "losses": 29,
+        "score": 0.5769,
+        "winrate": 0.5167,
+        "wins": 31
+      }
+    },
+    {
+      "candidate": "auto_r0004_324_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "winrate below 0.54",
+      "summary": {
+        "avg_production_delta": -15.35,
+        "avg_ship_delta": -1329.0,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": -15.35,
+            "avg_ship_delta": -1329.0,
+            "errors": 0,
+            "games": 60,
+            "losses": 34,
+            "winrate": 0.4333,
+            "wins": 26
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          41000,
+          41002,
+          41002,
+          41003,
+          41003,
+          41007,
+          41006,
+          41007,
+          41008,
+          41008,
+          41011,
+          41011
+        ],
+        "losses": 34,
+        "score": 0.2933,
+        "winrate": 0.4333,
+        "wins": 26
+      }
+    },
+    {
+      "candidate": "auto_r0004_503_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.667 < 0.30)",
+      "summary": {
+        "avg_production_delta": 17.67,
+        "avg_ship_delta": 944.08,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 17.67,
+            "avg_ship_delta": 944.08,
+            "errors": 0,
+            "games": 12,
+            "losses": 4,
+            "winrate": 0.6667,
+            "wins": 8
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40000,
+          40000,
+          40003,
+          40003
+        ],
+        "losses": 4,
+        "score": 0.8067,
+        "winrate": 0.6667,
+        "wins": 8
+      }
+    },
+    {
+      "candidate": "auto_r0004_371_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.667 < 0.30)",
+      "summary": {
+        "avg_production_delta": 28.33,
+        "avg_ship_delta": 2394.08,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 28.33,
+            "avg_ship_delta": 2394.08,
+            "errors": 0,
+            "games": 12,
+            "losses": 4,
+            "winrate": 0.6667,
+            "wins": 8
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40005,
+          40005,
+          40003,
+          40003
+        ],
+        "losses": 4,
+        "score": 0.8067,
+        "winrate": 0.6667,
+        "wins": 8
+      }
+    },
+    {
+      "candidate": "auto_r0004_118_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.667 < 0.30)",
+      "summary": {
+        "avg_production_delta": 24.92,
+        "avg_ship_delta": 1763.08,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 24.92,
+            "avg_ship_delta": 1763.08,
+            "errors": 0,
+            "games": 12,
+            "losses": 4,
+            "winrate": 0.6667,
+            "wins": 8
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40002,
+          40005,
+          40002,
+          40005
+        ],
+        "losses": 4,
+        "score": 0.8067,
+        "winrate": 0.6667,
+        "wins": 8
+      }
+    },
+    {
+      "candidate": "auto_r0004_239_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.583 < 0.30)",
+      "summary": {
+        "avg_production_delta": 9.92,
+        "avg_ship_delta": 728.0,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": 9.92,
+            "avg_ship_delta": 728.0,
+            "errors": 0,
+            "games": 12,
+            "losses": 5,
+            "winrate": 0.5833,
+            "wins": 7
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40002,
+          40001,
+          40003,
+          40003,
+          40005
+        ],
+        "losses": 5,
+        "score": 0.7142,
+        "winrate": 0.5833,
+        "wins": 7
+      }
+    },
+    {
+      "candidate": "auto_r0004_407_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.500 < 0.30)",
+      "summary": {
+        "avg_production_delta": -3.08,
+        "avg_ship_delta": -562.75,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": -3.08,
+            "avg_ship_delta": -562.75,
+            "errors": 0,
+            "games": 12,
+            "losses": 6,
+            "winrate": 0.5,
+            "wins": 6
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40000,
+          40001,
+          40000,
+          40001,
+          40002,
+          40005
+        ],
+        "losses": 6,
+        "score": 0.418,
+        "winrate": 0.5,
+        "wins": 6
+      }
+    },
+    {
+      "candidate": "auto_r0004_238_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.500 < 0.30)",
+      "summary": {
+        "avg_production_delta": -7.25,
+        "avg_ship_delta": -1335.33,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": -7.25,
+            "avg_ship_delta": -1335.33,
+            "errors": 0,
+            "games": 12,
+            "losses": 6,
+            "winrate": 0.5,
+            "wins": 6
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40001,
+          40000,
+          40001,
+          40000,
+          40003,
+          40003
+        ],
+        "losses": 6,
+        "score": 0.3882,
+        "winrate": 0.5,
+        "wins": 6
+      }
+    },
+    {
+      "candidate": "auto_r0004_006_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.333 < 0.30)",
+      "summary": {
+        "avg_production_delta": -27.25,
+        "avg_ship_delta": -2378.75,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": -27.25,
+            "avg_ship_delta": -2378.75,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40004,
+          40004,
+          40002,
+          40002,
+          40005,
+          40005,
+          40003,
+          40003
+        ],
+        "losses": 8,
+        "score": 0.1933,
+        "winrate": 0.3333,
+        "wins": 4
+      }
+    },
+    {
+      "candidate": "auto_r0004_488_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.333 < 0.30)",
+      "summary": {
+        "avg_production_delta": -25.58,
+        "avg_ship_delta": -1748.83,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": -25.58,
+            "avg_ship_delta": -1748.83,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40000,
+          40000,
+          40004,
+          40004,
+          40003,
+          40005,
+          40005,
+          40003
+        ],
+        "losses": 8,
+        "score": 0.1933,
+        "winrate": 0.3333,
+        "wins": 4
+      }
+    },
+    {
+      "candidate": "auto_r0004_441_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.333 < 0.30)",
+      "summary": {
+        "avg_production_delta": -22.25,
+        "avg_ship_delta": -983.83,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": -22.25,
+            "avg_ship_delta": -983.83,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40000,
+          40000,
+          40001,
+          40004,
+          40001,
+          40004,
+          40003,
+          40003
+        ],
+        "losses": 8,
+        "score": 0.1933,
+        "winrate": 0.3333,
+        "wins": 4
+      }
+    },
+    {
+      "candidate": "auto_r0004_321_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.250 < 0.30)",
+      "summary": {
+        "avg_production_delta": -54.08,
+        "avg_ship_delta": -4090.83,
+        "by_opponent": {
+          "champion:auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000": {
+            "avg_production_delta": -54.08,
+            "avg_ship_delta": -4090.83,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          40000,
+          40000,
+          40001,
+          40003,
+          40003,
+          40005,
+          40005,
+          40002,
+          40002
+        ],
+        "losses": 9,
+        "score": 0.11,
+        "winrate": 0.25,
+        "wins": 3
+      }
+    }
+  ],
+  "validation_telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/telemetry/lineage/round_0004_validation.jsonl",
+  "workers": 8
+}

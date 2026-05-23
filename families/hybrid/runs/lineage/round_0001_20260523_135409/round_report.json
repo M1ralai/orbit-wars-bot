@@ -1,0 +1,1371 @@
+{
+  "adaptive_mutation": {
+    "down": [],
+    "enabled": true,
+    "history_rounds": 0,
+    "parameter_count": 0,
+    "reports_used": 0,
+    "strength": 0.65,
+    "up": [],
+    "validated_candidates": 0
+  },
+  "best": {
+    "base": "hybrid_champion_hybrid_genesis_v000",
+    "name": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+    "params": {
+      "attack_fraction": 0.8333,
+      "comet_bonus": 12,
+      "counter_attack_bonus": 36.9549,
+      "counter_bonus": 12,
+      "defense_worth_factor": 9.9617,
+      "distance_weight": 2.35,
+      "enemy_bonus": 34,
+      "enemy_extra": 9,
+      "enemy_weak_bonus": 1.2227,
+      "evac_eta_threshold": 2.9966,
+      "evac_minor_prod": 3,
+      "feint_interval": 6,
+      "feint_min_margin": 1,
+      "high_distance_weight": 2.0,
+      "high_prod_extra": 2,
+      "high_prod_tax": 6,
+      "high_production_weight": 48,
+      "high_ship_weight": 0.7566,
+      "honeypot_min_prod": 4,
+      "honeypot_reserve": 4,
+      "max_attacks_per_turn": 6,
+      "min_reserve": 3,
+      "min_ships": 14,
+      "neutral_bonus": 23,
+      "neutral_tax": 6,
+      "overkill": 8,
+      "panic_reserve_mult": 0.675,
+      "pressure_divisor": 34,
+      "pressure_max": 18,
+      "production_forecast_mult": 0.9541,
+      "production_weight": 38,
+      "reserve_prod_mult": 1.9355,
+      "ship_weight": 1.05,
+      "short_hop_bonus": 0.8468,
+      "short_hop_range": 21,
+      "snipe_max_step": 90,
+      "snipe_overkill": 1,
+      "staging_penalty": 14.3592,
+      "sync_max_eta": 10.0,
+      "sync_min_target_prod": 2,
+      "sync_min_target_ships": 33
+    },
+    "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+  },
+  "best_summary": {
+    "avg_production_delta": 24.63,
+    "avg_ship_delta": 1903.97,
+    "by_opponent": {
+      "champion:hybrid_genesis_v000": {
+        "avg_production_delta": 24.63,
+        "avg_ship_delta": 1903.97,
+        "errors": 0,
+        "games": 60,
+        "losses": 21,
+        "winrate": 0.65,
+        "wins": 39
+      }
+    },
+    "draws": 0,
+    "error_seeds": [],
+    "errors": 0,
+    "games": 60,
+    "loss_seeds": [
+      11002,
+      11002,
+      11004,
+      11004,
+      11011,
+      11010,
+      11009,
+      11011,
+      11010,
+      11014,
+      11016,
+      11022
+    ],
+    "losses": 21,
+    "score": 0.79,
+    "winrate": 0.65,
+    "wins": 39
+  },
+  "candidate_bases": {
+    "hybrid_champion_hybrid_genesis_v000": 16
+  },
+  "finalist_bases": {
+    "hybrid_champion_hybrid_genesis_v000": 6
+  },
+  "gate": {
+    "passed": true,
+    "reason": "passed gate and won playoff from 3 entrants"
+  },
+  "generated_at": "20260523_135409",
+  "lineage_base": {
+    "champion": "hybrid_champion_hybrid_genesis_v000",
+    "champion_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/versions/hybrid_genesis_v000.py",
+    "mode": "champion",
+    "using_only_champion": true
+  },
+  "ml_ranker": {
+    "enabled": true,
+    "pool_size": 512,
+    "reason": "not enough samples: 0 < 20",
+    "selected_count": 16,
+    "train": {
+      "dataset_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_dataset.jsonl",
+      "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_ranker.joblib",
+      "reason": "not enough samples: 0 < 20",
+      "samples": 0,
+      "trained": false
+    },
+    "used": false
+  },
+  "opponents": [
+    "champion"
+  ],
+  "playoff": {
+    "champion": {
+      "base": "hybrid_champion_hybrid_genesis_v000",
+      "name": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "params": {
+        "attack_fraction": 0.8333,
+        "comet_bonus": 12,
+        "counter_attack_bonus": 36.9549,
+        "counter_bonus": 12,
+        "defense_worth_factor": 9.9617,
+        "distance_weight": 2.35,
+        "enemy_bonus": 34,
+        "enemy_extra": 9,
+        "enemy_weak_bonus": 1.2227,
+        "evac_eta_threshold": 2.9966,
+        "evac_minor_prod": 3,
+        "feint_interval": 6,
+        "feint_min_margin": 1,
+        "high_distance_weight": 2.0,
+        "high_prod_extra": 2,
+        "high_prod_tax": 6,
+        "high_production_weight": 48,
+        "high_ship_weight": 0.7566,
+        "honeypot_min_prod": 4,
+        "honeypot_reserve": 4,
+        "max_attacks_per_turn": 6,
+        "min_reserve": 3,
+        "min_ships": 14,
+        "neutral_bonus": 23,
+        "neutral_tax": 6,
+        "overkill": 8,
+        "panic_reserve_mult": 0.675,
+        "pressure_divisor": 34,
+        "pressure_max": 18,
+        "production_forecast_mult": 0.9541,
+        "production_weight": 38,
+        "reserve_prod_mult": 1.9355,
+        "ship_weight": 1.05,
+        "short_hop_bonus": 0.8468,
+        "short_hop_range": 21,
+        "snipe_max_step": 90,
+        "snipe_overkill": 1,
+        "staging_penalty": 14.3592,
+        "sync_max_eta": 10.0,
+        "sync_min_target_prod": 2,
+        "sync_min_target_ships": 33
+      },
+      "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+    },
+    "enabled": true,
+    "played": true,
+    "qualified": [
+      {
+        "base": "hybrid_champion_hybrid_genesis_v000",
+        "name": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+        "params": {
+          "attack_fraction": 0.8333,
+          "comet_bonus": 12,
+          "counter_attack_bonus": 36.9549,
+          "counter_bonus": 12,
+          "defense_worth_factor": 9.9617,
+          "distance_weight": 2.35,
+          "enemy_bonus": 34,
+          "enemy_extra": 9,
+          "enemy_weak_bonus": 1.2227,
+          "evac_eta_threshold": 2.9966,
+          "evac_minor_prod": 3,
+          "feint_interval": 6,
+          "feint_min_margin": 1,
+          "high_distance_weight": 2.0,
+          "high_prod_extra": 2,
+          "high_prod_tax": 6,
+          "high_production_weight": 48,
+          "high_ship_weight": 0.7566,
+          "honeypot_min_prod": 4,
+          "honeypot_reserve": 4,
+          "max_attacks_per_turn": 6,
+          "min_reserve": 3,
+          "min_ships": 14,
+          "neutral_bonus": 23,
+          "neutral_tax": 6,
+          "overkill": 8,
+          "panic_reserve_mult": 0.675,
+          "pressure_divisor": 34,
+          "pressure_max": 18,
+          "production_forecast_mult": 0.9541,
+          "production_weight": 38,
+          "reserve_prod_mult": 1.9355,
+          "ship_weight": 1.05,
+          "short_hop_bonus": 0.8468,
+          "short_hop_range": 21,
+          "snipe_max_step": 90,
+          "snipe_overkill": 1,
+          "staging_penalty": 14.3592,
+          "sync_max_eta": 10.0,
+          "sync_min_target_prod": 2,
+          "sync_min_target_ships": 33
+        },
+        "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+      },
+      {
+        "base": "hybrid_champion_hybrid_genesis_v000",
+        "name": "auto_r0001_007_hybrid_champion_hybrid_genesis_v000",
+        "params": {
+          "attack_fraction": 0.9264,
+          "comet_bonus": 12,
+          "counter_attack_bonus": 20.15,
+          "counter_bonus": 20,
+          "defense_worth_factor": 8.4333,
+          "distance_weight": 2.4672,
+          "enemy_bonus": 35,
+          "enemy_extra": 9,
+          "enemy_weak_bonus": 0.8,
+          "evac_eta_threshold": 3.4284,
+          "evac_minor_prod": 2,
+          "feint_interval": 7,
+          "feint_min_margin": 1,
+          "high_distance_weight": 2.008,
+          "high_prod_extra": 5,
+          "high_prod_tax": 6,
+          "high_production_weight": 47,
+          "high_ship_weight": 1.0237,
+          "honeypot_min_prod": 2,
+          "honeypot_reserve": 10,
+          "max_attacks_per_turn": 8,
+          "min_reserve": 2,
+          "min_ships": 14,
+          "neutral_bonus": 19,
+          "neutral_tax": 4,
+          "overkill": 3,
+          "panic_reserve_mult": 0.6259,
+          "pressure_divisor": 32,
+          "pressure_max": 14,
+          "production_forecast_mult": 0.7857,
+          "production_weight": 38,
+          "reserve_prod_mult": 2.4,
+          "ship_weight": 1.05,
+          "short_hop_bonus": 1.0971,
+          "short_hop_range": 24,
+          "snipe_max_step": 92,
+          "snipe_overkill": 3,
+          "staging_penalty": 15.0,
+          "sync_max_eta": 6.1487,
+          "sync_min_target_prod": 1,
+          "sync_min_target_ships": 35
+        },
+        "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_007_hybrid_champion_hybrid_genesis_v000.py"
+      },
+      {
+        "base": "hybrid_champion_hybrid_genesis_v000",
+        "name": "auto_r0001_001_hybrid_champion_hybrid_genesis_v000",
+        "params": {
+          "attack_fraction": 0.8669,
+          "comet_bonus": 7,
+          "counter_attack_bonus": 21.5365,
+          "counter_bonus": 13,
+          "defense_worth_factor": 10.7692,
+          "distance_weight": 2.35,
+          "enemy_bonus": 33,
+          "enemy_extra": 11,
+          "enemy_weak_bonus": 0.6141,
+          "evac_eta_threshold": 3.3383,
+          "evac_minor_prod": 1,
+          "feint_interval": 9,
+          "feint_min_margin": 1,
+          "high_distance_weight": 1.7252,
+          "high_prod_extra": 4,
+          "high_prod_tax": 3,
+          "high_production_weight": 48,
+          "high_ship_weight": 0.7514,
+          "honeypot_min_prod": 5,
+          "honeypot_reserve": 6,
+          "max_attacks_per_turn": 8,
+          "min_reserve": 4,
+          "min_ships": 18,
+          "neutral_bonus": 24,
+          "neutral_tax": 5,
+          "overkill": 3,
+          "panic_reserve_mult": 0.7156,
+          "pressure_divisor": 35,
+          "pressure_max": 16,
+          "production_forecast_mult": 1.0,
+          "production_weight": 34,
+          "reserve_prod_mult": 2.277,
+          "ship_weight": 0.8879,
+          "short_hop_bonus": 1.2911,
+          "short_hop_range": 32,
+          "snipe_max_step": 94,
+          "snipe_overkill": 4,
+          "staging_penalty": 18.5376,
+          "sync_max_eta": 9.4883,
+          "sync_min_target_prod": 1,
+          "sync_min_target_ships": 35
+        },
+        "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_001_hybrid_champion_hybrid_genesis_v000.py"
+      }
+    ],
+    "qualified_count": 3,
+    "rounds": [
+      {
+        "bye": {
+          "base": "hybrid_champion_hybrid_genesis_v000",
+          "name": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+          "params": {
+            "attack_fraction": 0.8333,
+            "comet_bonus": 12,
+            "counter_attack_bonus": 36.9549,
+            "counter_bonus": 12,
+            "defense_worth_factor": 9.9617,
+            "distance_weight": 2.35,
+            "enemy_bonus": 34,
+            "enemy_extra": 9,
+            "enemy_weak_bonus": 1.2227,
+            "evac_eta_threshold": 2.9966,
+            "evac_minor_prod": 3,
+            "feint_interval": 6,
+            "feint_min_margin": 1,
+            "high_distance_weight": 2.0,
+            "high_prod_extra": 2,
+            "high_prod_tax": 6,
+            "high_production_weight": 48,
+            "high_ship_weight": 0.7566,
+            "honeypot_min_prod": 4,
+            "honeypot_reserve": 4,
+            "max_attacks_per_turn": 6,
+            "min_reserve": 3,
+            "min_ships": 14,
+            "neutral_bonus": 23,
+            "neutral_tax": 6,
+            "overkill": 8,
+            "panic_reserve_mult": 0.675,
+            "pressure_divisor": 34,
+            "pressure_max": 18,
+            "production_forecast_mult": 0.9541,
+            "production_weight": 38,
+            "reserve_prod_mult": 1.9355,
+            "ship_weight": 1.05,
+            "short_hop_bonus": 0.8468,
+            "short_hop_range": 21,
+            "snipe_max_step": 90,
+            "snipe_overkill": 1,
+            "staging_penalty": 14.3592,
+            "sync_max_eta": 10.0,
+            "sync_min_target_prod": 2,
+            "sync_min_target_ships": 33
+          },
+          "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+        },
+        "entrants": [
+          {
+            "base": "hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.8333,
+              "comet_bonus": 12,
+              "counter_attack_bonus": 36.9549,
+              "counter_bonus": 12,
+              "defense_worth_factor": 9.9617,
+              "distance_weight": 2.35,
+              "enemy_bonus": 34,
+              "enemy_extra": 9,
+              "enemy_weak_bonus": 1.2227,
+              "evac_eta_threshold": 2.9966,
+              "evac_minor_prod": 3,
+              "feint_interval": 6,
+              "feint_min_margin": 1,
+              "high_distance_weight": 2.0,
+              "high_prod_extra": 2,
+              "high_prod_tax": 6,
+              "high_production_weight": 48,
+              "high_ship_weight": 0.7566,
+              "honeypot_min_prod": 4,
+              "honeypot_reserve": 4,
+              "max_attacks_per_turn": 6,
+              "min_reserve": 3,
+              "min_ships": 14,
+              "neutral_bonus": 23,
+              "neutral_tax": 6,
+              "overkill": 8,
+              "panic_reserve_mult": 0.675,
+              "pressure_divisor": 34,
+              "pressure_max": 18,
+              "production_forecast_mult": 0.9541,
+              "production_weight": 38,
+              "reserve_prod_mult": 1.9355,
+              "ship_weight": 1.05,
+              "short_hop_bonus": 0.8468,
+              "short_hop_range": 21,
+              "snipe_max_step": 90,
+              "snipe_overkill": 1,
+              "staging_penalty": 14.3592,
+              "sync_max_eta": 10.0,
+              "sync_min_target_prod": 2,
+              "sync_min_target_ships": 33
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+          },
+          {
+            "base": "hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0001_007_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.9264,
+              "comet_bonus": 12,
+              "counter_attack_bonus": 20.15,
+              "counter_bonus": 20,
+              "defense_worth_factor": 8.4333,
+              "distance_weight": 2.4672,
+              "enemy_bonus": 35,
+              "enemy_extra": 9,
+              "enemy_weak_bonus": 0.8,
+              "evac_eta_threshold": 3.4284,
+              "evac_minor_prod": 2,
+              "feint_interval": 7,
+              "feint_min_margin": 1,
+              "high_distance_weight": 2.008,
+              "high_prod_extra": 5,
+              "high_prod_tax": 6,
+              "high_production_weight": 47,
+              "high_ship_weight": 1.0237,
+              "honeypot_min_prod": 2,
+              "honeypot_reserve": 10,
+              "max_attacks_per_turn": 8,
+              "min_reserve": 2,
+              "min_ships": 14,
+              "neutral_bonus": 19,
+              "neutral_tax": 4,
+              "overkill": 3,
+              "panic_reserve_mult": 0.6259,
+              "pressure_divisor": 32,
+              "pressure_max": 14,
+              "production_forecast_mult": 0.7857,
+              "production_weight": 38,
+              "reserve_prod_mult": 2.4,
+              "ship_weight": 1.05,
+              "short_hop_bonus": 1.0971,
+              "short_hop_range": 24,
+              "snipe_max_step": 92,
+              "snipe_overkill": 3,
+              "staging_penalty": 15.0,
+              "sync_max_eta": 6.1487,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 35
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_007_hybrid_champion_hybrid_genesis_v000.py"
+          },
+          {
+            "base": "hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0001_001_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.8669,
+              "comet_bonus": 7,
+              "counter_attack_bonus": 21.5365,
+              "counter_bonus": 13,
+              "defense_worth_factor": 10.7692,
+              "distance_weight": 2.35,
+              "enemy_bonus": 33,
+              "enemy_extra": 11,
+              "enemy_weak_bonus": 0.6141,
+              "evac_eta_threshold": 3.3383,
+              "evac_minor_prod": 1,
+              "feint_interval": 9,
+              "feint_min_margin": 1,
+              "high_distance_weight": 1.7252,
+              "high_prod_extra": 4,
+              "high_prod_tax": 3,
+              "high_production_weight": 48,
+              "high_ship_weight": 0.7514,
+              "honeypot_min_prod": 5,
+              "honeypot_reserve": 6,
+              "max_attacks_per_turn": 8,
+              "min_reserve": 4,
+              "min_ships": 18,
+              "neutral_bonus": 24,
+              "neutral_tax": 5,
+              "overkill": 3,
+              "panic_reserve_mult": 0.7156,
+              "pressure_divisor": 35,
+              "pressure_max": 16,
+              "production_forecast_mult": 1.0,
+              "production_weight": 34,
+              "reserve_prod_mult": 2.277,
+              "ship_weight": 0.8879,
+              "short_hop_bonus": 1.2911,
+              "short_hop_range": 32,
+              "snipe_max_step": 94,
+              "snipe_overkill": 4,
+              "staging_penalty": 18.5376,
+              "sync_max_eta": 9.4883,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 35
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_001_hybrid_champion_hybrid_genesis_v000.py"
+          }
+        ],
+        "matches": [
+          {
+            "a": {
+              "avg_production_delta": 16.42,
+              "avg_ship_delta": 1782.33,
+              "base": "hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0001_007_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 5,
+              "score": 0.7233,
+              "winrate": 0.5833,
+              "wins": 7
+            },
+            "b": {
+              "avg_production_delta": -16.42,
+              "avg_ship_delta": -1782.33,
+              "base": "hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0001_001_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 7,
+              "score": 0.2767,
+              "winrate": 0.4167,
+              "wins": 5
+            },
+            "loser": "auto_r0001_001_hybrid_champion_hybrid_genesis_v000",
+            "match": {
+              "match": 1,
+              "round": 1,
+              "seed_start": 13100,
+              "seeds": 6,
+              "workers": 8
+            },
+            "winner": "auto_r0001_007_hybrid_champion_hybrid_genesis_v000"
+          }
+        ],
+        "round": 1
+      },
+      {
+        "entrants": [
+          {
+            "base": "hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.8333,
+              "comet_bonus": 12,
+              "counter_attack_bonus": 36.9549,
+              "counter_bonus": 12,
+              "defense_worth_factor": 9.9617,
+              "distance_weight": 2.35,
+              "enemy_bonus": 34,
+              "enemy_extra": 9,
+              "enemy_weak_bonus": 1.2227,
+              "evac_eta_threshold": 2.9966,
+              "evac_minor_prod": 3,
+              "feint_interval": 6,
+              "feint_min_margin": 1,
+              "high_distance_weight": 2.0,
+              "high_prod_extra": 2,
+              "high_prod_tax": 6,
+              "high_production_weight": 48,
+              "high_ship_weight": 0.7566,
+              "honeypot_min_prod": 4,
+              "honeypot_reserve": 4,
+              "max_attacks_per_turn": 6,
+              "min_reserve": 3,
+              "min_ships": 14,
+              "neutral_bonus": 23,
+              "neutral_tax": 6,
+              "overkill": 8,
+              "panic_reserve_mult": 0.675,
+              "pressure_divisor": 34,
+              "pressure_max": 18,
+              "production_forecast_mult": 0.9541,
+              "production_weight": 38,
+              "reserve_prod_mult": 1.9355,
+              "ship_weight": 1.05,
+              "short_hop_bonus": 0.8468,
+              "short_hop_range": 21,
+              "snipe_max_step": 90,
+              "snipe_overkill": 1,
+              "staging_penalty": 14.3592,
+              "sync_max_eta": 10.0,
+              "sync_min_target_prod": 2,
+              "sync_min_target_ships": 33
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+          },
+          {
+            "base": "hybrid_champion_hybrid_genesis_v000",
+            "name": "auto_r0001_007_hybrid_champion_hybrid_genesis_v000",
+            "params": {
+              "attack_fraction": 0.9264,
+              "comet_bonus": 12,
+              "counter_attack_bonus": 20.15,
+              "counter_bonus": 20,
+              "defense_worth_factor": 8.4333,
+              "distance_weight": 2.4672,
+              "enemy_bonus": 35,
+              "enemy_extra": 9,
+              "enemy_weak_bonus": 0.8,
+              "evac_eta_threshold": 3.4284,
+              "evac_minor_prod": 2,
+              "feint_interval": 7,
+              "feint_min_margin": 1,
+              "high_distance_weight": 2.008,
+              "high_prod_extra": 5,
+              "high_prod_tax": 6,
+              "high_production_weight": 47,
+              "high_ship_weight": 1.0237,
+              "honeypot_min_prod": 2,
+              "honeypot_reserve": 10,
+              "max_attacks_per_turn": 8,
+              "min_reserve": 2,
+              "min_ships": 14,
+              "neutral_bonus": 19,
+              "neutral_tax": 4,
+              "overkill": 3,
+              "panic_reserve_mult": 0.6259,
+              "pressure_divisor": 32,
+              "pressure_max": 14,
+              "production_forecast_mult": 0.7857,
+              "production_weight": 38,
+              "reserve_prod_mult": 2.4,
+              "ship_weight": 1.05,
+              "short_hop_bonus": 1.0971,
+              "short_hop_range": 24,
+              "snipe_max_step": 92,
+              "snipe_overkill": 3,
+              "staging_penalty": 15.0,
+              "sync_max_eta": 6.1487,
+              "sync_min_target_prod": 1,
+              "sync_min_target_ships": 35
+            },
+            "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0001_20260523_135409/candidates/auto_r0001_007_hybrid_champion_hybrid_genesis_v000.py"
+          }
+        ],
+        "matches": [
+          {
+            "a": {
+              "avg_production_delta": 73.17,
+              "avg_ship_delta": 5089.25,
+              "base": "hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 0,
+              "score": 1.14,
+              "winrate": 1.0,
+              "wins": 12
+            },
+            "b": {
+              "avg_production_delta": -73.17,
+              "avg_ship_delta": -5089.25,
+              "base": "hybrid_champion_hybrid_genesis_v000",
+              "candidate": "auto_r0001_007_hybrid_champion_hybrid_genesis_v000",
+              "draws": 0,
+              "errors": 0,
+              "games": 12,
+              "losses": 12,
+              "score": -0.14,
+              "winrate": 0.0,
+              "wins": 0
+            },
+            "loser": "auto_r0001_007_hybrid_champion_hybrid_genesis_v000",
+            "match": {
+              "match": 1,
+              "round": 2,
+              "seed_start": 14100,
+              "seeds": 6,
+              "workers": 8
+            },
+            "winner": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000"
+          }
+        ],
+        "round": 2
+      }
+    ],
+    "telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/telemetry/lineage/round_0001_playoff.jsonl"
+  },
+  "promotion": {
+    "candidate": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+    "submit": {
+      "reason": "submit disabled",
+      "status": "skipped"
+    },
+    "version_name": "auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+    "version_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/versions/auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py"
+  },
+  "replay_signal": {
+    "base_count": 0,
+    "base_names": [],
+    "examples": 0,
+    "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/replay_signals.json",
+    "phase_rates": {},
+    "target_owner_rates": {}
+  },
+  "round": 1,
+  "smoke_telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/telemetry/lineage/round_0001_smoke.jsonl",
+  "validated_finalists": [
+    {
+      "candidate": "auto_r0001_004_hybrid_champion_hybrid_genesis_v000",
+      "passed": true,
+      "reason": "passed",
+      "summary": {
+        "avg_production_delta": 24.63,
+        "avg_ship_delta": 1903.97,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": 24.63,
+            "avg_ship_delta": 1903.97,
+            "errors": 0,
+            "games": 60,
+            "losses": 21,
+            "winrate": 0.65,
+            "wins": 39
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          11002,
+          11002,
+          11004,
+          11004,
+          11011,
+          11010,
+          11009,
+          11011,
+          11010,
+          11014,
+          11016,
+          11022
+        ],
+        "losses": 21,
+        "score": 0.79,
+        "winrate": 0.65,
+        "wins": 39
+      }
+    },
+    {
+      "candidate": "auto_r0001_007_hybrid_champion_hybrid_genesis_v000",
+      "passed": true,
+      "reason": "passed",
+      "summary": {
+        "avg_production_delta": 18.3,
+        "avg_ship_delta": 1677.8,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": 18.3,
+            "avg_ship_delta": 1677.8,
+            "errors": 0,
+            "games": 60,
+            "losses": 21,
+            "winrate": 0.65,
+            "wins": 39
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          11005,
+          11000,
+          11005,
+          11009,
+          11009,
+          11004,
+          11010,
+          11015,
+          11015,
+          11018,
+          11019,
+          11019
+        ],
+        "losses": 21,
+        "score": 0.79,
+        "winrate": 0.65,
+        "wins": 39
+      }
+    },
+    {
+      "candidate": "auto_r0001_001_hybrid_champion_hybrid_genesis_v000",
+      "passed": true,
+      "reason": "passed",
+      "summary": {
+        "avg_production_delta": 20.93,
+        "avg_ship_delta": 1170.57,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": 20.93,
+            "avg_ship_delta": 1170.57,
+            "errors": 0,
+            "games": 60,
+            "losses": 22,
+            "winrate": 0.6333,
+            "wins": 38
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          11001,
+          11001,
+          11003,
+          11003,
+          11006,
+          11006,
+          11011,
+          11011,
+          11015,
+          11015,
+          11013,
+          11022
+        ],
+        "losses": 22,
+        "score": 0.7733,
+        "winrate": 0.6333,
+        "wins": 38
+      }
+    },
+    {
+      "candidate": "auto_r0001_003_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "winrate below 0.54",
+      "summary": {
+        "avg_production_delta": -3.87,
+        "avg_ship_delta": 164.73,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -3.87,
+            "avg_ship_delta": 164.73,
+            "errors": 0,
+            "games": 60,
+            "losses": 32,
+            "winrate": 0.4667,
+            "wins": 28
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          11002,
+          11002,
+          11000,
+          11003,
+          11004,
+          11000,
+          11004,
+          11007,
+          11008,
+          11011,
+          11013,
+          11014
+        ],
+        "losses": 32,
+        "score": 0.499,
+        "winrate": 0.4667,
+        "wins": 28
+      }
+    },
+    {
+      "candidate": "auto_r0001_002_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "winrate below 0.54",
+      "summary": {
+        "avg_production_delta": -8.13,
+        "avg_ship_delta": -731.22,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -8.13,
+            "avg_ship_delta": -731.22,
+            "errors": 0,
+            "games": 60,
+            "losses": 32,
+            "winrate": 0.4667,
+            "wins": 28
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          11001,
+          11002,
+          11002,
+          11003,
+          11003,
+          11001,
+          11000,
+          11005,
+          11005,
+          11000,
+          11004,
+          11008
+        ],
+        "losses": 32,
+        "score": 0.3486,
+        "winrate": 0.4667,
+        "wins": 28
+      }
+    },
+    {
+      "candidate": "auto_r0001_012_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "winrate below 0.54",
+      "summary": {
+        "avg_production_delta": -14.93,
+        "avg_ship_delta": -1100.42,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -14.93,
+            "avg_ship_delta": -1100.42,
+            "errors": 0,
+            "games": 60,
+            "losses": 37,
+            "winrate": 0.3833,
+            "wins": 23
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          11001,
+          11001,
+          11005,
+          11000,
+          11003,
+          11000,
+          11005,
+          11004,
+          11004,
+          11008,
+          11008,
+          11011
+        ],
+        "losses": 37,
+        "score": 0.2433,
+        "winrate": 0.3833,
+        "wins": 23
+      }
+    },
+    {
+      "candidate": "auto_r0001_011_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.417 < 0.30)",
+      "summary": {
+        "avg_production_delta": -4.0,
+        "avg_ship_delta": -687.5,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -4.0,
+            "avg_ship_delta": -687.5,
+            "errors": 0,
+            "games": 12,
+            "losses": 7,
+            "winrate": 0.4167,
+            "wins": 5
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10001,
+          10001,
+          10003,
+          10002,
+          10003,
+          10002,
+          10000
+        ],
+        "losses": 7,
+        "score": 0.3281,
+        "winrate": 0.4167,
+        "wins": 5
+      }
+    },
+    {
+      "candidate": "auto_r0001_014_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.417 < 0.30)",
+      "summary": {
+        "avg_production_delta": -10.0,
+        "avg_ship_delta": -211.92,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -10.0,
+            "avg_ship_delta": -211.92,
+            "errors": 0,
+            "games": 12,
+            "losses": 7,
+            "winrate": 0.4167,
+            "wins": 5
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10003,
+          10002,
+          10001,
+          10001,
+          10002,
+          10005,
+          10005
+        ],
+        "losses": 7,
+        "score": 0.2852,
+        "winrate": 0.4167,
+        "wins": 5
+      }
+    },
+    {
+      "candidate": "auto_r0001_015_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.417 < 0.30)",
+      "summary": {
+        "avg_production_delta": -19.25,
+        "avg_ship_delta": -1513.08,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -19.25,
+            "avg_ship_delta": -1513.08,
+            "errors": 0,
+            "games": 12,
+            "losses": 7,
+            "winrate": 0.4167,
+            "wins": 5
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10001,
+          10001,
+          10002,
+          10000,
+          10000,
+          10004,
+          10004
+        ],
+        "losses": 7,
+        "score": 0.2767,
+        "winrate": 0.4167,
+        "wins": 5
+      }
+    },
+    {
+      "candidate": "auto_r0001_000_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.333 < 0.30)",
+      "summary": {
+        "avg_production_delta": -25.58,
+        "avg_ship_delta": -2145.33,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -25.58,
+            "avg_ship_delta": -2145.33,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10001,
+          10001,
+          10005,
+          10002,
+          10004,
+          10000,
+          10005,
+          10004
+        ],
+        "losses": 8,
+        "score": 0.1933,
+        "winrate": 0.3333,
+        "wins": 4
+      }
+    },
+    {
+      "candidate": "auto_r0001_005_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.333 < 0.30)",
+      "summary": {
+        "avg_production_delta": -21.08,
+        "avg_ship_delta": -1922.92,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -21.08,
+            "avg_ship_delta": -1922.92,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10001,
+          10001,
+          10003,
+          10002,
+          10005,
+          10004,
+          10004,
+          10005
+        ],
+        "losses": 8,
+        "score": 0.1933,
+        "winrate": 0.3333,
+        "wins": 4
+      }
+    },
+    {
+      "candidate": "auto_r0001_010_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.333 < 0.30)",
+      "summary": {
+        "avg_production_delta": -22.33,
+        "avg_ship_delta": -1053.75,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -22.33,
+            "avg_ship_delta": -1053.75,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10001,
+          10001,
+          10003,
+          10002,
+          10005,
+          10005,
+          10004,
+          10004
+        ],
+        "losses": 8,
+        "score": 0.1933,
+        "winrate": 0.3333,
+        "wins": 4
+      }
+    },
+    {
+      "candidate": "auto_r0001_008_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.250 < 0.30)",
+      "summary": {
+        "avg_production_delta": -26.75,
+        "avg_ship_delta": -1917.17,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -26.75,
+            "avg_ship_delta": -1917.17,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10001,
+          10003,
+          10001,
+          10003,
+          10000,
+          10000,
+          10002,
+          10004,
+          10004
+        ],
+        "losses": 9,
+        "score": 0.11,
+        "winrate": 0.25,
+        "wins": 3
+      }
+    },
+    {
+      "candidate": "auto_r0001_013_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.250 < 0.30)",
+      "summary": {
+        "avg_production_delta": -30.83,
+        "avg_ship_delta": -2930.67,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -30.83,
+            "avg_ship_delta": -2930.67,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10001,
+          10001,
+          10002,
+          10002,
+          10005,
+          10005,
+          10000,
+          10004,
+          10004
+        ],
+        "losses": 9,
+        "score": 0.11,
+        "winrate": 0.25,
+        "wins": 3
+      }
+    },
+    {
+      "candidate": "auto_r0001_006_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.000 < 0.30)",
+      "summary": {
+        "avg_production_delta": -53.5,
+        "avg_ship_delta": -3769.42,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -53.5,
+            "avg_ship_delta": -3769.42,
+            "errors": 0,
+            "games": 12,
+            "losses": 12,
+            "winrate": 0.0,
+            "wins": 0
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10003,
+          10003,
+          10001,
+          10001,
+          10002,
+          10002,
+          10000,
+          10005,
+          10000,
+          10005,
+          10004,
+          10004
+        ],
+        "losses": 12,
+        "score": -0.14,
+        "winrate": 0.0,
+        "wins": 0
+      }
+    },
+    {
+      "candidate": "auto_r0001_009_hybrid_champion_hybrid_genesis_v000",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.000 < 0.30)",
+      "summary": {
+        "avg_production_delta": -53.75,
+        "avg_ship_delta": -4384.33,
+        "by_opponent": {
+          "champion:hybrid_genesis_v000": {
+            "avg_production_delta": -53.75,
+            "avg_ship_delta": -4384.33,
+            "errors": 0,
+            "games": 12,
+            "losses": 12,
+            "winrate": 0.0,
+            "wins": 0
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 12,
+        "loss_seeds": [
+          10001,
+          10001,
+          10003,
+          10003,
+          10002,
+          10005,
+          10002,
+          10000,
+          10005,
+          10004,
+          10000,
+          10004
+        ],
+        "losses": 12,
+        "score": -0.14,
+        "winrate": 0.0,
+        "wins": 0
+      }
+    }
+  ],
+  "validation_telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/telemetry/lineage/round_0001_validation.jsonl",
+  "workers": 8
+}

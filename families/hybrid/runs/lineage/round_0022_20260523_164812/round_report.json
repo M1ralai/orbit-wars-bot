@@ -1,0 +1,1175 @@
+{
+  "adaptive_mutation": {
+    "down": [
+      "honeypot_min_prod",
+      "max_attacks_per_turn",
+      "feint_min_margin"
+    ],
+    "enabled": true,
+    "history_rounds": 21,
+    "parameter_count": 5,
+    "reports_used": 21,
+    "strength": 0.65,
+    "up": [
+      "overkill",
+      "feint_interval"
+    ],
+    "validated_candidates": 336
+  },
+  "best": {
+    "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+    "ml_model_samples": 336,
+    "ml_rank": 8,
+    "ml_score": 0.474112,
+    "ml_selected": true,
+    "name": "auto_r0022_119_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+    "params": {
+      "attack_fraction": 0.8593,
+      "comet_bonus": 11,
+      "counter_attack_bonus": 36.477,
+      "counter_bonus": 19,
+      "defense_worth_factor": 11.5509,
+      "distance_weight": 2.249,
+      "enemy_bonus": 26,
+      "enemy_extra": 6,
+      "enemy_weak_bonus": 1.0704,
+      "evac_eta_threshold": 2.3984,
+      "evac_minor_prod": 3,
+      "feint_interval": 7,
+      "feint_min_margin": 1,
+      "high_distance_weight": 2.249,
+      "high_prod_extra": 3,
+      "high_prod_tax": 2,
+      "high_production_weight": 50,
+      "high_ship_weight": 0.6806,
+      "honeypot_min_prod": 1,
+      "honeypot_reserve": 1,
+      "max_attacks_per_turn": 1,
+      "min_reserve": 3,
+      "min_ships": 20,
+      "neutral_bonus": 25,
+      "neutral_tax": 11,
+      "overkill": 5,
+      "panic_reserve_mult": 0.8678,
+      "pressure_divisor": 39,
+      "pressure_max": 24,
+      "production_forecast_mult": 1.1846,
+      "production_weight": 50,
+      "reserve_prod_mult": 1.6004,
+      "ship_weight": 1.0439,
+      "short_hop_bonus": 1.351,
+      "short_hop_range": 18,
+      "snipe_max_step": 85,
+      "snipe_overkill": 3,
+      "staging_penalty": 11.7526,
+      "sync_max_eta": 9.9358,
+      "sync_min_target_prod": 2,
+      "sync_min_target_ships": 34
+    },
+    "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/lineage/round_0022_20260523_164812/candidates/auto_r0022_119_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut.py"
+  },
+  "best_summary": {
+    "avg_production_delta": -11.12,
+    "avg_ship_delta": -779.5,
+    "by_opponent": {
+      "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+        "avg_production_delta": -21.42,
+        "avg_ship_delta": -1849.17,
+        "errors": 0,
+        "games": 12,
+        "losses": 8,
+        "winrate": 0.3333,
+        "wins": 4
+      },
+      "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+        "avg_production_delta": -0.83,
+        "avg_ship_delta": 290.17,
+        "errors": 0,
+        "games": 12,
+        "losses": 6,
+        "winrate": 0.5,
+        "wins": 6
+      }
+    },
+    "draws": 0,
+    "error_seeds": [],
+    "errors": 0,
+    "games": 24,
+    "loss_seeds": [
+      220001,
+      220000,
+      220002,
+      220003,
+      220004,
+      220005,
+      220000,
+      220001,
+      220002,
+      220003,
+      220003,
+      220004
+    ],
+    "losses": 14,
+    "score": 0.2772,
+    "winrate": 0.4167,
+    "wins": 10
+  },
+  "candidate_bases": {
+    "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut": 16
+  },
+  "finalist_bases": {},
+  "gate": {
+    "passed": false,
+    "reason": "no candidates passed the smoke winrate threshold"
+  },
+  "generated_at": "20260523_164812",
+  "lineage_base": {
+    "champion": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+    "champion_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/versions/auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_auto_v003_20260523_150334_auto_r0003_289_hybrid_champion_auto_v002_20260523_144951_auto_r0002_009_hybrid_champion_auto_v001_20260523_141336_auto_r0001_004_hybrid_champion_hybrid_genesis_v000.py",
+    "mode": "champion",
+    "using_only_champion": true
+  },
+  "ml_ranker": {
+    "enabled": true,
+    "exploit_count": 8,
+    "exploration_count": 8,
+    "metadata": {
+      "dataset_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_dataset.jsonl",
+      "features": 96,
+      "holdout": {
+        "mae": 0.1074,
+        "r2": 0.1294,
+        "samples": 74
+      },
+      "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_ranker.joblib",
+      "priors_enabled": true,
+      "priors_parameter_count": 5,
+      "priors_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/adaptive_priors.json",
+      "samples": 336,
+      "sklearn_version": "1.8.0",
+      "target": "quality = winrate * 0.7 + score * 0.3",
+      "trained": true
+    },
+    "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_ranker.joblib",
+    "pool_size": 256,
+    "selected": [
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 1,
+        "ml_score": 0.506215,
+        "name": "auto_r0022_135_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 2,
+        "ml_score": 0.499514,
+        "name": "auto_r0022_048_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 3,
+        "ml_score": 0.495205,
+        "name": "auto_r0022_122_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 4,
+        "ml_score": 0.493175,
+        "name": "auto_r0022_111_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 5,
+        "ml_score": 0.487751,
+        "name": "auto_r0022_192_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 6,
+        "ml_score": 0.479221,
+        "name": "auto_r0022_136_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 7,
+        "ml_score": 0.474738,
+        "name": "auto_r0022_046_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 8,
+        "ml_score": 0.474112,
+        "name": "auto_r0022_119_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 104,
+        "ml_score": 0.414382,
+        "name": "auto_r0022_138_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 126,
+        "ml_score": 0.405416,
+        "name": "auto_r0022_183_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 207,
+        "ml_score": 0.375708,
+        "name": "auto_r0022_061_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 226,
+        "ml_score": 0.361494,
+        "name": "auto_r0022_209_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 208,
+        "ml_score": 0.37544,
+        "name": "auto_r0022_195_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 79,
+        "ml_score": 0.427166,
+        "name": "auto_r0022_130_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 62,
+        "ml_score": 0.433508,
+        "name": "auto_r0022_023_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 166,
+        "ml_score": 0.392023,
+        "name": "auto_r0022_167_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      }
+    ],
+    "selected_count": 16,
+    "top": [
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 1,
+        "ml_score": 0.506215,
+        "name": "auto_r0022_135_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 2,
+        "ml_score": 0.499514,
+        "name": "auto_r0022_048_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 3,
+        "ml_score": 0.495205,
+        "name": "auto_r0022_122_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 4,
+        "ml_score": 0.493175,
+        "name": "auto_r0022_111_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 5,
+        "ml_score": 0.487751,
+        "name": "auto_r0022_192_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 6,
+        "ml_score": 0.479221,
+        "name": "auto_r0022_136_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 7,
+        "ml_score": 0.474738,
+        "name": "auto_r0022_046_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 8,
+        "ml_score": 0.474112,
+        "name": "auto_r0022_119_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 9,
+        "ml_score": 0.474106,
+        "name": "auto_r0022_148_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      },
+      {
+        "base": "hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+        "ml_rank": 10,
+        "ml_score": 0.472186,
+        "name": "auto_r0022_022_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut"
+      }
+    ],
+    "train": {
+      "dataset_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_dataset.jsonl",
+      "features": 96,
+      "holdout": {
+        "mae": 0.1074,
+        "r2": 0.1294,
+        "samples": 74
+      },
+      "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/ml_ranker.joblib",
+      "priors_enabled": true,
+      "priors_parameter_count": 5,
+      "priors_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/lineage/adaptive_priors.json",
+      "samples": 336,
+      "sklearn_version": "1.8.0",
+      "target": "quality = winrate * 0.7 + score * 0.3",
+      "trained": true
+    },
+    "used": true
+  },
+  "opponents": [
+    "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py",
+    "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py"
+  ],
+  "playoff": {
+    "enabled": true,
+    "played": false,
+    "qualified": [],
+    "qualified_count": 0
+  },
+  "replay_signal": {
+    "base_count": 0,
+    "base_names": [],
+    "examples": 0,
+    "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/training/replay_signals.json",
+    "phase_rates": {},
+    "target_owner_rates": {}
+  },
+  "round": 22,
+  "smoke_telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/telemetry/lineage/round_0022_smoke.jsonl",
+  "validated_finalists": [
+    {
+      "candidate": "auto_r0022_119_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.417 < 0.50)",
+      "summary": {
+        "avg_production_delta": -11.12,
+        "avg_ship_delta": -779.5,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -21.42,
+            "avg_ship_delta": -1849.17,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -0.83,
+            "avg_ship_delta": 290.17,
+            "errors": 0,
+            "games": 12,
+            "losses": 6,
+            "winrate": 0.5,
+            "wins": 6
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220002,
+          220003,
+          220004,
+          220005,
+          220000,
+          220001,
+          220002,
+          220003,
+          220003,
+          220004
+        ],
+        "losses": 14,
+        "score": 0.2772,
+        "winrate": 0.4167,
+        "wins": 10
+      }
+    },
+    {
+      "candidate": "auto_r0022_122_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.375 < 0.50)",
+      "summary": {
+        "avg_production_delta": -11.75,
+        "avg_ship_delta": -1681.79,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -18.92,
+            "avg_ship_delta": -1750.42,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -4.58,
+            "avg_ship_delta": -1613.17,
+            "errors": 0,
+            "games": 12,
+            "losses": 7,
+            "winrate": 0.4167,
+            "wins": 5
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220003,
+          220002,
+          220003,
+          220005,
+          220004,
+          220000,
+          220001,
+          220003,
+          220003,
+          220002
+        ],
+        "losses": 15,
+        "score": 0.235,
+        "winrate": 0.375,
+        "wins": 9
+      }
+    },
+    {
+      "candidate": "auto_r0022_111_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.375 < 0.50)",
+      "summary": {
+        "avg_production_delta": -12.46,
+        "avg_ship_delta": -399.0,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -19.67,
+            "avg_ship_delta": -192.92,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -5.25,
+            "avg_ship_delta": -605.08,
+            "errors": 0,
+            "games": 12,
+            "losses": 7,
+            "winrate": 0.4167,
+            "wins": 5
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220003,
+          220003,
+          220002,
+          220004,
+          220005,
+          220001,
+          220000,
+          220003,
+          220003,
+          220002
+        ],
+        "losses": 15,
+        "score": 0.235,
+        "winrate": 0.375,
+        "wins": 9
+      }
+    },
+    {
+      "candidate": "auto_r0022_135_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.292 < 0.50)",
+      "summary": {
+        "avg_production_delta": -22.42,
+        "avg_ship_delta": -2006.46,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -17.5,
+            "avg_ship_delta": -568.67,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -27.33,
+            "avg_ship_delta": -3444.25,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220001,
+          220003,
+          220004,
+          220004,
+          220002,
+          220005,
+          220003,
+          220001,
+          220000,
+          220003
+        ],
+        "losses": 17,
+        "score": 0.1517,
+        "winrate": 0.2917,
+        "wins": 7
+      }
+    },
+    {
+      "candidate": "auto_r0022_048_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.292 < 0.50)",
+      "summary": {
+        "avg_production_delta": -28.0,
+        "avg_ship_delta": -1561.21,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -34.75,
+            "avg_ship_delta": -1932.67,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -21.25,
+            "avg_ship_delta": -1189.75,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220001,
+          220002,
+          220003,
+          220004,
+          220004,
+          220005,
+          220001,
+          220000,
+          220003,
+          220003
+        ],
+        "losses": 17,
+        "score": 0.1517,
+        "winrate": 0.2917,
+        "wins": 7
+      }
+    },
+    {
+      "candidate": "auto_r0022_136_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.292 < 0.50)",
+      "summary": {
+        "avg_production_delta": -26.42,
+        "avg_ship_delta": -2866.67,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -32.25,
+            "avg_ship_delta": -2689.75,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -20.58,
+            "avg_ship_delta": -3043.58,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220002,
+          220004,
+          220003,
+          220004,
+          220003,
+          220005,
+          220001,
+          220001,
+          220000,
+          220003
+        ],
+        "losses": 17,
+        "score": 0.1517,
+        "winrate": 0.2917,
+        "wins": 7
+      }
+    },
+    {
+      "candidate": "auto_r0022_209_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.292 < 0.50)",
+      "summary": {
+        "avg_production_delta": -26.08,
+        "avg_ship_delta": -2444.29,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -32.92,
+            "avg_ship_delta": -2083.42,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -19.25,
+            "avg_ship_delta": -2805.17,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220002,
+          220003,
+          220003,
+          220004,
+          220005,
+          220004,
+          220000,
+          220001,
+          220003,
+          220003
+        ],
+        "losses": 17,
+        "score": 0.1517,
+        "winrate": 0.2917,
+        "wins": 7
+      }
+    },
+    {
+      "candidate": "auto_r0022_023_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.292 < 0.50)",
+      "summary": {
+        "avg_production_delta": -25.12,
+        "avg_ship_delta": -1463.12,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -19.75,
+            "avg_ship_delta": -1389.08,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -30.5,
+            "avg_ship_delta": -1537.17,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220000,
+          220001,
+          220000,
+          220002,
+          220004,
+          220003,
+          220005,
+          220003,
+          220004,
+          220001,
+          220000,
+          220003
+        ],
+        "losses": 17,
+        "score": 0.1517,
+        "winrate": 0.2917,
+        "wins": 7
+      }
+    },
+    {
+      "candidate": "auto_r0022_192_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.250 < 0.50)",
+      "summary": {
+        "avg_production_delta": -31.38,
+        "avg_ship_delta": -4006.75,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -45.25,
+            "avg_ship_delta": -3528.5,
+            "errors": 0,
+            "games": 12,
+            "losses": 10,
+            "winrate": 0.1667,
+            "wins": 2
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -17.5,
+            "avg_ship_delta": -4485.0,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220003,
+          220004,
+          220003,
+          220005,
+          220002,
+          220004,
+          220001,
+          220000,
+          220003,
+          220001
+        ],
+        "losses": 18,
+        "score": 0.11,
+        "winrate": 0.25,
+        "wins": 6
+      }
+    },
+    {
+      "candidate": "auto_r0022_046_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.250 < 0.50)",
+      "summary": {
+        "avg_production_delta": -27.79,
+        "avg_ship_delta": -3673.92,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -17.67,
+            "avg_ship_delta": -1899.42,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -37.92,
+            "avg_ship_delta": -5448.42,
+            "errors": 0,
+            "games": 12,
+            "losses": 10,
+            "winrate": 0.1667,
+            "wins": 2
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220001,
+          220000,
+          220003,
+          220002,
+          220004,
+          220003,
+          220005,
+          220004,
+          220001,
+          220000
+        ],
+        "losses": 18,
+        "score": 0.11,
+        "winrate": 0.25,
+        "wins": 6
+      }
+    },
+    {
+      "candidate": "auto_r0022_183_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.250 < 0.50)",
+      "summary": {
+        "avg_production_delta": -30.33,
+        "avg_ship_delta": -3655.88,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -45.0,
+            "avg_ship_delta": -3516.58,
+            "errors": 0,
+            "games": 12,
+            "losses": 10,
+            "winrate": 0.1667,
+            "wins": 2
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -15.67,
+            "avg_ship_delta": -3795.17,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220001,
+          220002,
+          220003,
+          220004,
+          220003,
+          220005,
+          220001,
+          220000,
+          220003,
+          220003
+        ],
+        "losses": 18,
+        "score": 0.11,
+        "winrate": 0.25,
+        "wins": 6
+      }
+    },
+    {
+      "candidate": "auto_r0022_130_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.250 < 0.50)",
+      "summary": {
+        "avg_production_delta": -31.0,
+        "avg_ship_delta": -2535.08,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -43.33,
+            "avg_ship_delta": -2838.33,
+            "errors": 0,
+            "games": 12,
+            "losses": 10,
+            "winrate": 0.1667,
+            "wins": 2
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -18.67,
+            "avg_ship_delta": -2231.83,
+            "errors": 0,
+            "games": 12,
+            "losses": 8,
+            "winrate": 0.3333,
+            "wins": 4
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220000,
+          220001,
+          220003,
+          220003,
+          220002,
+          220004,
+          220004,
+          220005,
+          220001,
+          220001,
+          220000,
+          220003
+        ],
+        "losses": 18,
+        "score": 0.11,
+        "winrate": 0.25,
+        "wins": 6
+      }
+    },
+    {
+      "candidate": "auto_r0022_138_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.208 < 0.50)",
+      "summary": {
+        "avg_production_delta": -37.46,
+        "avg_ship_delta": -3519.96,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -44.58,
+            "avg_ship_delta": -3525.58,
+            "errors": 0,
+            "games": 12,
+            "losses": 10,
+            "winrate": 0.1667,
+            "wins": 2
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -30.33,
+            "avg_ship_delta": -3514.33,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220001,
+          220000,
+          220002,
+          220003,
+          220003,
+          220004,
+          220005,
+          220004,
+          220001,
+          220000,
+          220001
+        ],
+        "losses": 19,
+        "score": 0.0683,
+        "winrate": 0.2083,
+        "wins": 5
+      }
+    },
+    {
+      "candidate": "auto_r0022_167_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.208 < 0.50)",
+      "summary": {
+        "avg_production_delta": -36.29,
+        "avg_ship_delta": -4268.75,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -43.67,
+            "avg_ship_delta": -3812.17,
+            "errors": 0,
+            "games": 12,
+            "losses": 10,
+            "winrate": 0.1667,
+            "wins": 2
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -28.92,
+            "avg_ship_delta": -4725.33,
+            "errors": 0,
+            "games": 12,
+            "losses": 9,
+            "winrate": 0.25,
+            "wins": 3
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220000,
+          220001,
+          220001,
+          220002,
+          220003,
+          220003,
+          220004,
+          220005,
+          220004,
+          220000,
+          220001,
+          220001
+        ],
+        "losses": 19,
+        "score": 0.0683,
+        "winrate": 0.2083,
+        "wins": 5
+      }
+    },
+    {
+      "candidate": "auto_r0022_061_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.167 < 0.50)",
+      "summary": {
+        "avg_production_delta": -41.92,
+        "avg_ship_delta": -3252.71,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -44.0,
+            "avg_ship_delta": -3073.0,
+            "errors": 0,
+            "games": 12,
+            "losses": 10,
+            "winrate": 0.1667,
+            "wins": 2
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -39.83,
+            "avg_ship_delta": -3432.42,
+            "errors": 0,
+            "games": 12,
+            "losses": 10,
+            "winrate": 0.1667,
+            "wins": 2
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220001,
+          220002,
+          220000,
+          220003,
+          220003,
+          220004,
+          220005,
+          220004,
+          220000,
+          220001
+        ],
+        "losses": 20,
+        "score": 0.0267,
+        "winrate": 0.1667,
+        "wins": 4
+      }
+    },
+    {
+      "candidate": "auto_r0022_195_hybrid_champ_auto_v004_20260523_151616_auto_r0004_462_hybrid_champion_aut",
+      "passed": false,
+      "reason": "failed smoke test (winrate 0.083 < 0.50)",
+      "summary": {
+        "avg_production_delta": -54.83,
+        "avg_ship_delta": -5673.96,
+        "by_opponent": {
+          "agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py": {
+            "avg_production_delta": -54.33,
+            "avg_ship_delta": -4195.42,
+            "errors": 0,
+            "games": 12,
+            "losses": 11,
+            "winrate": 0.0833,
+            "wins": 1
+          },
+          "families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py": {
+            "avg_production_delta": -55.33,
+            "avg_ship_delta": -7152.5,
+            "errors": 0,
+            "games": 12,
+            "losses": 11,
+            "winrate": 0.0833,
+            "wins": 1
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 24,
+        "loss_seeds": [
+          220001,
+          220000,
+          220001,
+          220002,
+          220003,
+          220002,
+          220003,
+          220004,
+          220004,
+          220005,
+          220000,
+          220001
+        ],
+        "losses": 22,
+        "score": -0.0567,
+        "winrate": 0.0833,
+        "wins": 2
+      }
+    }
+  ],
+  "validation_telemetry": ".",
+  "workers": 4
+}

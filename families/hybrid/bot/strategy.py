@@ -1,21 +1,23 @@
-from bot.params import PARAMS_CONFIG
 from bot.state import (
-    MID_END,
-    build_orbit_table,
-    detect_reinforcements,
-    detect_reinforcements_detailed,
-    detect_threats,
-    detect_threats_detailed,
+    parse_planet, parse_fleet, build_orbit_table,
+    detect_threats, detect_threats_detailed, detect_reinforcements_detailed,
     get_phase_params,
-    parse_fleet,
-    parse_planet,
 )
-from bot.strategies.defense import build_net_threats, identify_doomed_planets
-from bot.strategies.feint import run_feint
-from bot.strategies.honeypot import choose_honeypot, run_honeypot_trap
-from bot.strategies.intel import detect_counter_attack_targets
-from bot.strategies.pressure import run_pressure_plan
-from bot.strategies.snipe_hijack import run_snipe_hijack
+from bot.params import PARAMS_CONFIG
+from bot.strategies.stance import detect_stance, get_tactic_order
+from bot.strategies.evacuation import find_doomed, run_evacuation
+from bot.strategies.snipe import run_snipe
+from bot.strategies.reinforce import run_reinforce
+from bot.strategies.sync import run_sync
+from bot.strategies.honeypot import run_honeypot
+from bot.strategies.counter_punch import run_counter_punch
+from bot.strategies.chain_expand import run_chain_expand
+from bot.strategies.prod_starve import run_prod_starve
+from bot.strategies.vulture import run_vulture
+from bot.strategies.turtle import run_turtle
+from bot.strategies.overflow import run_overflow
+from bot.strategies.comet_rush import run_comet_rush
+from bot.strategies.core_attack import run_core_attack
 
 
 def agent(obs):
@@ -28,91 +30,86 @@ def agent(obs):
     comet_ids = set(obs.get("comet_planet_ids", []))
 
     orbit_table = build_orbit_table(initial_planets, angular_velocity)
+
     my_planets = [p for p in planets if p["owner"] == player]
+    targets = [p for p in planets if p["owner"] != player]
     enemy_fleets = [f for f in fleets if f["owner"] != player]
     my_fleets = [f for f in fleets if f["owner"] == player]
-    attack_targets = [p for p in planets if p["owner"] != player]
 
-    my_total_ships = sum(p["ships"] for p in my_planets) + sum(f["ships"] for f in my_fleets)
-    enemy_total_ships = sum(p["ships"] for p in attack_targets if p["owner"] != -1) + sum(f["ships"] for f in enemy_fleets)
-    my_prod = sum(p["production"] for p in my_planets)
-    enemy_prod = sum(p["production"] for p in attack_targets if p["owner"] != -1)
-    is_behind = (my_prod < enemy_prod * 1.1) or (my_total_ships < enemy_total_ships * 1.1)
-
-    P = get_phase_params(step, PARAMS_CONFIG)
-    late_game_ahead = (step >= MID_END) and (not is_behind)
-    late_game_behind = (step >= MID_END) and is_behind
-    honeypot_id = choose_honeypot(my_planets, late_game_ahead, P)
-    eta_cache = {}
-
-    if not my_planets or not attack_targets:
+    if not my_planets or not targets:
         return []
 
+    # --- Situation awareness ---
+    eta_cache = {}
     threats = detect_threats(my_planets, enemy_fleets, step, orbit_table, eta_cache=eta_cache)
-    reinforcements = detect_reinforcements(my_planets, my_fleets, step, orbit_table, eta_cache=eta_cache)
     threats_det = detect_threats_detailed(my_planets, enemy_fleets, step, orbit_table, eta_cache=eta_cache)
-    reinforcements_det = detect_reinforcements_detailed(my_planets, my_fleets, step, orbit_table, eta_cache=eta_cache)
-    doomed_planets = identify_doomed_planets(my_planets, threats_det, reinforcements_det, is_behind, P)
-    net_threats = build_net_threats(my_planets, threats, reinforcements)
-    counter_attack_targets = detect_counter_attack_targets(enemy_fleets, my_planets, step, orbit_table, eta_cache=eta_cache)
+    reinf_det = detect_reinforcements_detailed(my_planets, my_fleets, step, orbit_table, eta_cache=eta_cache)
+
+    P = get_phase_params(step, PARAMS_CONFIG)
+    doomed = find_doomed(my_planets, threats_det, reinf_det)
+
+    my_prod = sum(p["production"] for p in my_planets)
+    enemy_prod = sum(p["production"] for p in targets if p["owner"] != -1)
+    neutrals = [t for t in targets if t["owner"] == -1]
+    enemy_targets = [t for t in targets if t["owner"] not in (-1, player)]
+
+    # --- Stance detection ---
+    stance = detect_stance(step, my_planets, targets, threats_det, my_prod, enemy_prod)
+    tactic_order = get_tactic_order(stance)
 
     moves = []
     assigned = {}
 
-    run_snipe_hijack(
-        attack_targets,
-        enemy_fleets,
-        my_planets,
-        step,
-        P,
-        orbit_table,
-        doomed_planets,
-        net_threats,
-        moves,
-        assigned,
-        eta_cache=eta_cache,
-    )
-    run_honeypot_trap(
-        my_planets,
-        threats_det,
-        net_threats,
-        late_game_ahead,
-        honeypot_id,
-        step,
-        P,
-        orbit_table,
-        doomed_planets,
-        moves,
-    )
-    run_feint(
-        attack_targets,
-        my_planets,
-        my_fleets,
-        late_game_behind,
-        step,
-        P,
-        orbit_table,
-        doomed_planets,
-        moves,
-        eta_cache=eta_cache,
-    )
-    run_pressure_plan(
-        my_planets,
-        attack_targets,
-        my_fleets,
-        player,
-        step,
-        P,
-        orbit_table,
-        comet_ids,
-        net_threats,
-        doomed_planets,
-        late_game_ahead,
-        honeypot_id,
-        counter_attack_targets,
-        moves,
-        assigned,
-        eta_cache=eta_cache,
-    )
+    # --- Execute tactics in stance order ---
+    for tactic in tactic_order:
+        if tactic == "evacuation":
+            run_evacuation(my_planets, doomed, step, orbit_table, moves)
+
+        elif tactic == "snipe":
+            run_snipe(neutrals, enemy_fleets, my_planets, doomed, threats,
+                      step, P, orbit_table, moves, assigned)
+
+        elif tactic == "reinforce":
+            run_reinforce(my_planets, threats_det, doomed, threats,
+                          step, P, orbit_table, moves)
+
+        elif tactic == "honeypot":
+            run_honeypot(my_planets, threats_det, doomed, threats,
+                         my_prod, enemy_prod, step, P, orbit_table, moves)
+
+        elif tactic == "counter_punch":
+            run_counter_punch(my_planets, planets, enemy_fleets, doomed, threats,
+                              player, step, P, orbit_table, moves, assigned)
+
+        elif tactic == "chain_expand":
+            run_chain_expand(my_planets, neutrals, doomed, threats,
+                             player, step, P, orbit_table, moves, assigned)
+
+        elif tactic == "prod_starve":
+            run_prod_starve(my_planets, enemy_targets, doomed, threats,
+                            player, step, P, orbit_table, moves, assigned)
+
+        elif tactic == "vulture":
+            run_vulture(my_planets, enemy_targets, doomed, threats,
+                        player, step, P, orbit_table, moves, assigned)
+
+        elif tactic == "turtle":
+            run_turtle(my_planets, doomed, threats, step, P, orbit_table, moves)
+
+        elif tactic == "overflow":
+            run_overflow(my_planets, targets, doomed, threats,
+                         player, step, P, orbit_table, moves, assigned)
+
+        elif tactic == "comet_rush":
+            run_comet_rush(my_planets, targets, comet_ids, doomed, threats,
+                           player, step, P, orbit_table, moves, assigned)
+
+        elif tactic == "core_attack":
+            run_core_attack(my_planets, targets, doomed, threats,
+                            player, step, P, comet_ids, orbit_table, moves, assigned)
+
+        elif tactic == "sync":
+            run_sync(my_planets, enemy_targets, doomed, threats,
+                     player, step, P, orbit_table, moves, assigned)
 
     return moves

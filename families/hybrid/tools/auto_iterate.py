@@ -2,7 +2,9 @@ import argparse
 import ast
 import json
 import math
+import multiprocessing
 import os
+import platform
 import random
 import shutil
 import subprocess
@@ -12,6 +14,10 @@ import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
+
+# Use fork on macOS — workers inherit loaded kaggle_environments (1.27x faster)
+if platform.system() == "Darwin":
+    multiprocessing.set_start_method("fork", force=True)
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -61,47 +67,47 @@ INT_PARAMS = {
 }
 
 PARAM_BOUNDS = {
-    "min_ships": (4, 20),
-    "min_reserve": (2, 20),
-    "reserve_prod_mult": (1.5, 6.0),
-    "panic_reserve_mult": (0.0, 1.8),
-    "neutral_bonus": (0, 32),
-    "neutral_tax": (0, 24),
-    "enemy_bonus": (18, 76),
-    "enemy_weak_bonus": (0.0, 4.0),
-    "counter_bonus": (0, 42),
-    "pressure_max": (0, 95),
-    "pressure_divisor": (6, 80),
-    "production_weight": (8, 48),
-    "high_production_weight": (14, 60),
-    "high_prod_tax": (0, 42),
-    "distance_weight": (1.35, 4.2),
-    "high_distance_weight": (1.1, 3.8),
-    "short_hop_bonus": (0.0, 3.8),
-    "short_hop_range": (16, 52),
-    "ship_weight": (0.55, 2.45),
-    "high_ship_weight": (0.5, 2.35),
-    "overkill": (0, 8),
-    "high_prod_extra": (0, 5),
-    "enemy_extra": (0, 14),
-    "attack_fraction": (0.22, 0.98),
-    "max_attacks_per_turn": (1, 10),
-    "comet_bonus": (-8, 18),
-    "staging_penalty": (5.0, 35.0),
-    "defense_worth_factor": (4.0, 20.0),
-    "counter_attack_bonus": (5.0, 45.0),
-    "production_forecast_mult": (0.0, 2.0),
-    "evac_eta_threshold": (1.5, 6.0),
-    "evac_minor_prod": (1, 3),
-    "sync_max_eta": (4.0, 20.0),
-    "sync_min_target_prod": (1, 5),
-    "sync_min_target_ships": (15, 60),
-    "snipe_max_step": (40, 180),
-    "snipe_overkill": (1, 8),
-    "honeypot_min_prod": (2, 5),
-    "honeypot_reserve": (2, 10),
-    "feint_interval": (4, 15),
-    "feint_min_margin": (1, 5),
+    "min_ships": (3, 26),
+    "min_reserve": (1, 22),
+    "reserve_prod_mult": (1.0, 7.0),
+    "panic_reserve_mult": (0.0, 2.2),
+    "neutral_bonus": (0, 40),
+    "neutral_tax": (0, 28),
+    "enemy_bonus": (14, 86),
+    "enemy_weak_bonus": (0.0, 5.0),
+    "counter_bonus": (0, 50),
+    "pressure_max": (0, 110),
+    "pressure_divisor": (5, 90),
+    "production_weight": (6, 64),
+    "high_production_weight": (10, 78),
+    "high_prod_tax": (0, 50),
+    "distance_weight": (1.0, 5.0),
+    "high_distance_weight": (0.8, 4.5),
+    "short_hop_bonus": (0.0, 4.5),
+    "short_hop_range": (12, 58),
+    "ship_weight": (0.4, 3.0),
+    "high_ship_weight": (0.3, 2.8),
+    "overkill": (0, 10),
+    "high_prod_extra": (0, 7),
+    "enemy_extra": (0, 18),
+    "attack_fraction": (0.18, 0.99),
+    "max_attacks_per_turn": (1, 12),
+    "comet_bonus": (-10, 24),
+    "staging_penalty": (3.0, 42.0),
+    "defense_worth_factor": (3.0, 25.0),
+    "counter_attack_bonus": (3.0, 55.0),
+    "production_forecast_mult": (0.0, 2.5),
+    "evac_eta_threshold": (1.2, 7.0),
+    "evac_minor_prod": (1, 4),
+    "sync_max_eta": (3.0, 24.0),
+    "sync_min_target_prod": (1, 6),
+    "sync_min_target_ships": (12, 70),
+    "snipe_max_step": (35, 220),
+    "snipe_overkill": (1, 10),
+    "honeypot_min_prod": (1, 6),
+    "honeypot_reserve": (1, 12),
+    "feint_interval": (3, 18),
+    "feint_min_margin": (1, 6),
 }
 
 
@@ -149,12 +155,12 @@ def param_prior(priors, name):
 
 def mutate_params(base, rng, priors=None, adaptive_strength=0.0):
     params = dict(base)
-    
+
     # Remove keys not in PARAM_BOUNDS (like 'source')
     for k in list(params.keys()):
         if k not in PARAM_BOUNDS:
             del params[k]
-            
+
     # Fill in any missing keys with defaults from PARAM_BOUNDS
     for k, (low, high) in PARAM_BOUNDS.items():
         if k not in params:
@@ -162,6 +168,9 @@ def mutate_params(base, rng, priors=None, adaptive_strength=0.0):
                 params[k] = int(round((low + high) / 2))
             else:
                 params[k] = round(float((low + high) / 2), 4)
+
+    # Decide if this candidate gets chaos mutation (20% chance)
+    is_chaos = rng.random() < 0.10
 
     for name, value in list(params.items()):
         if rng.random() > 0.72:
@@ -178,6 +187,10 @@ def mutate_params(base, rng, priors=None, adaptive_strength=0.0):
                 delta = rng.choice([1, 2, 3]) * direction
                 if rng.random() < 0.2:
                     delta *= 2
+            elif is_chaos:
+                delta = rng.choice([-6, -5, -4, -3, 3, 4, 5, 6])
+                if rng.random() < 0.3:
+                    delta *= 2
             else:
                 delta = rng.choice([-3, -2, -1, 1, 2, 3])
                 if rng.random() < 0.2:
@@ -186,11 +199,15 @@ def mutate_params(base, rng, priors=None, adaptive_strength=0.0):
         else:
             if use_prior:
                 delta = rng.uniform(0.02, 0.12) * span * direction
+            elif is_chaos:
+                delta = rng.uniform(-0.25, 0.25) * span
             else:
                 delta = rng.uniform(-0.12, 0.12) * span
             params[name] = clamp(name, value + delta)
 
-    for name in rng.sample(list(params), k=rng.randint(1, 3)):
+    # Random full-reset: more params get fully randomized in chaos mode
+    reset_count = rng.randint(3, 6) if is_chaos else rng.randint(1, 3)
+    for name in rng.sample(list(params), k=min(reset_count, len(params))):
         low, high = PARAM_BOUNDS[name]
         prior = param_prior(priors, name)
         use_prior = prior and rng.random() < adaptive_strength
@@ -372,7 +389,11 @@ def champion_base_item(state):
     params = load_base_params_from_agent(champion_path)
     if not params:
         raise SystemExit(f"could not read BASE_PARAMS from hybrid champion: {champion_path}")
-    return f"hybrid_champion_{champion_path.stem}", params, champion_path
+    # Truncate champion name to avoid filesystem path length limits
+    stem = champion_path.stem
+    if len(stem) > 60:
+        stem = stem[:60]
+    return f"hybrid_champ_{stem}", params, champion_path
 
 
 def load_elite_items(path):
@@ -875,15 +896,22 @@ def iter_job_results(jobs, workers):
             yield future.result()
 
 
-def evaluate_candidate(candidate, opponents, seeds, telemetry_file, args):
-    summary = new_summary(candidate["name"])
+def resolve_opponents_once(opponents, state_path):
+    """Resolve all opponent aliases to paths once, avoiding repeated disk reads."""
+    resolved = []
+    for opponent in opponents:
+        opponent_path = resolve_agent(opponent, state_path)
+        opponent_name = opponent_label(opponent, opponent_path)
+        resolved.append((opponent, opponent_path, opponent_name))
+    return resolved
+
+
+def build_candidate_jobs(candidate, resolved_opponents, seeds):
+    """Build all match jobs for a single candidate against resolved opponents."""
     candidate_path = candidate["path"]
     jobs = []
-
-    for opponent in opponents:
+    for _, opponent_path, opponent_name in resolved_opponents:
         for seed in seeds:
-            opponent_path = resolve_agent(opponent, args.state)
-            opponent_name = opponent_label(opponent, opponent_path)
             jobs.append(
                 {
                     "agent_a": candidate_path,
@@ -894,13 +922,12 @@ def evaluate_candidate(candidate, opponents, seeds, telemetry_file, args):
                     "metadata": {
                         "candidate": candidate["name"],
                         "opponent": opponent_name,
-                        "opponent_alias": opponent,
+                        "opponent_alias": _,
                         "opponent_path": opponent_path,
                         "candidate_side": "a",
                     },
                 }
             )
-
             jobs.append(
                 {
                     "agent_a": opponent_path,
@@ -911,30 +938,59 @@ def evaluate_candidate(candidate, opponents, seeds, telemetry_file, args):
                     "metadata": {
                         "candidate": candidate["name"],
                         "opponent": opponent_name,
-                        "opponent_alias": opponent,
+                        "opponent_alias": _,
                         "opponent_path": opponent_path,
                         "candidate_side": "b",
                     },
                 }
             )
-
-    for record in iter_job_results(jobs, args.workers):
-        add_result(summary, record, record["candidate_side"], record["opponent"])
-        telemetry_file.write(json.dumps(record, sort_keys=True) + "\n")
-
-    return summary
+    return jobs
 
 
 def evaluate_candidates(candidates, opponents, seeds, telemetry_path, args):
     telemetry_path.parent.mkdir(parents=True, exist_ok=True)
-    summaries = {}
+
+    # Resolve opponents once instead of per-seed per-candidate
+    resolved_opponents = resolve_opponents_once(opponents, args.state)
+
+    # Build ALL jobs for ALL candidates upfront
+    all_jobs = []
+    for candidate in candidates:
+        all_jobs.extend(build_candidate_jobs(candidate, resolved_opponents, seeds))
+
+    total_jobs = len(all_jobs)
+    games_per_candidate = total_jobs // len(candidates) if candidates else 0
+    print(f"  running {total_jobs} matches ({len(candidates)} candidates x {games_per_candidate} games) with {args.workers} workers...", flush=True)
+
+    # Run everything in a single shared pool
+    summaries = {c["name"]: new_summary(c["name"]) for c in candidates}
+    completed = 0
+    completed_candidates = set()
     with telemetry_path.open("w", encoding="utf-8") as telemetry_file:
-        for candidate in candidates:
-            summary = evaluate_candidate(candidate, opponents, seeds, telemetry_file, args)
-            summaries[candidate["name"]] = summary
+        for record in iter_job_results(all_jobs, args.workers):
+            summary = summaries[record["candidate"]]
+            add_result(summary, record, record["candidate_side"], record["opponent"])
+            telemetry_file.write(json.dumps(record, sort_keys=True) + "\n")
+            completed += 1
+
+            # Print candidate result as soon as all its games are done
+            if summary["games"] >= games_per_candidate and record["candidate"] not in completed_candidates:
+                completed_candidates.add(record["candidate"])
+                print(
+                    f"  [{len(completed_candidates)}/{len(candidates)}] {record['candidate']}: "
+                    f"winrate={winrate(summary):.3f} score={score_summary(summary):.3f} "
+                    f"games={summary['games']}",
+                    flush=True,
+                )
+
+    # Print any remaining candidates that didn't trigger above (safety net)
+    for candidate in candidates:
+        if candidate["name"] not in completed_candidates:
+            summary = summaries[candidate["name"]]
             print(
-                f"{candidate['name']}: winrate={winrate(summary):.3f} "
-                f"score={score_summary(summary):.3f} games={summary['games']}",
+                f"  [{len(candidates)}/{len(candidates)}] {candidate['name']}: "
+                f"winrate={winrate(summary):.3f} score={score_summary(summary):.3f} "
+                f"games={summary['games']}",
                 flush=True,
             )
     return summaries
@@ -1081,85 +1137,86 @@ def playoff_sort_key(score):
     )
 
 
-def run_playoff_match(candidate_a, candidate_b, seeds, telemetry_file, match_info):
-    score_a = new_playoff_score(candidate_a)
-    score_b = new_playoff_score(candidate_b)
-    jobs = []
+def build_playoff_round_jobs(bracket, playoff_round, round_index, args):
+    """Build all jobs for one playoff round and return matchups + jobs."""
+    matchups = []
+    all_jobs = []
+    next_bracket = []
 
-    for seed in seeds:
-        jobs.append(
-            {
-                "agent_a": candidate_a["path"],
-                "agent_b": candidate_b["path"],
-                "seed": seed,
-                "name_a": candidate_a["name"],
-                "name_b": candidate_b["name"],
-                "metadata": {
-                    "playoff": match_info,
-                    "playoff_side": {
-                        "a": candidate_a["name"],
-                        "b": candidate_b["name"],
-                    },
-                    "playoff_order": "forward",
-                },
-            }
+    left = 0
+    right = len(bracket) - 1
+    bye = None
+    if len(bracket) % 2 == 1:
+        bye = bracket[0]
+        next_bracket.append(bye)
+        left = 1
+
+    match_index = 1
+    while left < right:
+        candidate_a = bracket[left]
+        candidate_b = bracket[right]
+        seed_start = (
+            args.seed_start
+            + round_index * 10000
+            + 2000
+            + playoff_round * 1000
+            + match_index * 100
         )
+        seeds = range(seed_start, seed_start + args.playoff_seeds)
+        match_info = {
+            "round": playoff_round,
+            "match": match_index,
+            "seed_start": seed_start,
+            "seeds": args.playoff_seeds,
+            "workers": args.workers,
+        }
 
-        jobs.append(
-            {
-                "agent_a": candidate_b["path"],
-                "agent_b": candidate_a["path"],
-                "seed": seed,
-                "name_a": candidate_b["name"],
-                "name_b": candidate_a["name"],
-                "metadata": {
-                    "playoff": match_info,
-                    "playoff_side": {
-                        "a": candidate_b["name"],
-                        "b": candidate_a["name"],
+        match_key = f"r{playoff_round}m{match_index}"
+        matchups.append((match_key, candidate_a, candidate_b, match_info))
+
+        for seed in seeds:
+            all_jobs.append(
+                {
+                    "agent_a": candidate_a["path"],
+                    "agent_b": candidate_b["path"],
+                    "seed": seed,
+                    "name_a": candidate_a["name"],
+                    "name_b": candidate_b["name"],
+                    "metadata": {
+                        "playoff": match_info,
+                        "playoff_side": {
+                            "a": candidate_a["name"],
+                            "b": candidate_b["name"],
+                        },
+                        "playoff_order": "forward",
+                        "playoff_match_key": match_key,
                     },
-                    "playoff_order": "reverse",
-                },
-            }
-        )
-
-    for record in iter_job_results(jobs, match_info["workers"]):
-        if record["playoff_order"] == "forward":
-            add_playoff_result(
-                score_a,
-                score_b,
-                record,
-                candidate_a["name"],
-                candidate_b["name"],
+                }
             )
-        else:
-            add_playoff_result(
-                score_b,
-                score_a,
-                record,
-                candidate_b["name"],
-                candidate_a["name"],
+            all_jobs.append(
+                {
+                    "agent_a": candidate_b["path"],
+                    "agent_b": candidate_a["path"],
+                    "seed": seed,
+                    "name_a": candidate_b["name"],
+                    "name_b": candidate_a["name"],
+                    "metadata": {
+                        "playoff": match_info,
+                        "playoff_side": {
+                            "a": candidate_b["name"],
+                            "b": candidate_a["name"],
+                        },
+                        "playoff_order": "reverse",
+                        "playoff_match_key": match_key,
+                    },
+                }
             )
-        telemetry_file.write(json.dumps(record, sort_keys=True) + "\n")
 
-    if playoff_sort_key(score_a) >= playoff_sort_key(score_b):
-        winner = candidate_a
-        loser = candidate_b
-    else:
-        winner = candidate_b
-        loser = candidate_a
+        left += 1
+        right -= 1
+        match_index += 1
 
-    return {
-        "winner": winner,
-        "loser": loser,
-        "report": {
-            "match": match_info,
-            "a": compact_playoff_score(score_a),
-            "b": compact_playoff_score(score_b),
-            "winner": winner["name"],
-            "loser": loser["name"],
-        },
-    }
+    return matchups, all_jobs, next_bracket, bye
 
 
 def run_playoff(candidates, round_index, args, telemetry_path):
@@ -1170,59 +1227,61 @@ def run_playoff(candidates, round_index, args, telemetry_path):
     with telemetry_path.open("w", encoding="utf-8") as telemetry_file:
         playoff_round = 1
         while len(bracket) > 1:
-            next_bracket = []
             round_report = {
                 "round": playoff_round,
                 "entrants": [candidate_snapshot(candidate) for candidate in bracket],
                 "matches": [],
             }
 
-            left = 0
-            right = len(bracket) - 1
-            if len(bracket) % 2 == 1:
-                bye = bracket[0]
-                next_bracket.append(bye)
+            matchups, all_jobs, next_bracket, bye = build_playoff_round_jobs(
+                bracket, playoff_round, round_index, args
+            )
+            if bye:
                 round_report["bye"] = candidate_snapshot(bye)
-                left = 1
 
-            match_index = 1
-            while left < right:
-                candidate_a = bracket[left]
-                candidate_b = bracket[right]
-                seed_start = (
-                    args.seed_start
-                    + round_index * 10000
-                    + 2000
-                    + playoff_round * 1000
-                    + match_index * 100
-                )
-                seeds = range(seed_start, seed_start + args.playoff_seeds)
-                match_info = {
-                    "round": playoff_round,
-                    "match": match_index,
-                    "seed_start": seed_start,
-                    "seeds": args.playoff_seeds,
-                    "workers": args.workers,
-                }
-                result = run_playoff_match(
+            # Build score trackers per match
+            scores = {}
+            matchup_map = {}
+            for match_key, candidate_a, candidate_b, match_info in matchups:
+                scores[match_key] = (
+                    new_playoff_score(candidate_a),
+                    new_playoff_score(candidate_b),
                     candidate_a,
                     candidate_b,
-                    seeds,
-                    telemetry_file,
                     match_info,
                 )
-                next_bracket.append(result["winner"])
-                round_report["matches"].append(result["report"])
+
+            # Run ALL playoff round jobs in a single pool
+            for record in iter_job_results(all_jobs, args.workers):
+                match_key = record["playoff_match_key"]
+                score_a, score_b, ca, cb, mi = scores[match_key]
+                if record["playoff_order"] == "forward":
+                    add_playoff_result(score_a, score_b, record, ca["name"], cb["name"])
+                else:
+                    add_playoff_result(score_b, score_a, record, cb["name"], ca["name"])
+                telemetry_file.write(json.dumps(record, sort_keys=True) + "\n")
+
+            # Determine winners
+            for match_key, candidate_a, candidate_b, match_info in matchups:
+                score_a, score_b, _, _, _ = scores[match_key]
+                if playoff_sort_key(score_a) >= playoff_sort_key(score_b):
+                    winner, loser = candidate_a, candidate_b
+                else:
+                    winner, loser = candidate_b, candidate_a
+                next_bracket.append(winner)
+                round_report["matches"].append({
+                    "match": match_info,
+                    "a": compact_playoff_score(score_a),
+                    "b": compact_playoff_score(score_b),
+                    "winner": winner["name"],
+                    "loser": loser["name"],
+                })
                 print(
-                    "playoff "
-                    f"r{playoff_round}m{match_index}: "
+                    f"playoff {match_key}: "
                     f"{candidate_a['name']} vs {candidate_b['name']} -> "
-                    f"{result['winner']['name']}",
+                    f"{winner['name']}",
                     flush=True,
                 )
-                left += 1
-                right -= 1
-                match_index += 1
 
             rounds.append(round_report)
             bracket = next_bracket
@@ -1238,7 +1297,9 @@ def run_playoff(candidates, round_index, args, telemetry_path):
 
 def next_version_name(state, candidate_name):
     index = int(state.get("promotions", 0)) + 1
-    return f"auto_v{index:03d}_{utc_stamp()}_{candidate_name}"
+    # Truncate candidate name to avoid filesystem path length explosion
+    short_name = candidate_name[:80] if len(candidate_name) > 80 else candidate_name
+    return f"auto_v{index:03d}_{utc_stamp()}_{short_name}"
 
 
 def package_submission(source_path, package_dir, tar_path):
@@ -1451,11 +1512,11 @@ def run_round(args, state, rng):
         args,
     )
     ranked = rank_candidates(candidates, smoke_summaries)
-    
+
     smoke_threshold = args.smoke_min_winrate
     valid_finalists = [c for c in ranked if winrate(smoke_summaries[c["name"]]) >= smoke_threshold]
     finalists = valid_finalists[: args.finalists]
-    
+
     print(f"Smoke test complete. Filtered {len(valid_finalists)} finalists passing the winrate threshold of {smoke_threshold:.2f} (from {len(ranked)} total candidates).", flush=True)
 
     if not finalists:
@@ -1606,13 +1667,13 @@ def run_round(args, state, rng):
         "gate": {"passed": passed, "reason": reason},
     }
     save_json(run_dir / "round_report.json", round_report)
-    
+
     # ELITE POOL UPDATES
     elite_pool_path.parent.mkdir(parents=True, exist_ok=True)
     elite_data = []
     if elite_pool_path.exists():
         elite_data = json.loads(elite_pool_path.read_text(encoding="utf-8"))
-        
+
     for candidate in final_ranked:
         summary = validation_summaries[candidate["name"]]
         if winrate(summary) >= 0.50:
@@ -1623,7 +1684,7 @@ def run_round(args, state, rng):
                     "winrate": winrate(summary),
                     "score": score_summary(summary)
                 })
-                
+
     # Sort elites by score and keep top 50
     elite_data.sort(key=lambda x: x.get("score", 0), reverse=True)
     elite_data = elite_data[:50]
