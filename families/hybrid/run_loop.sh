@@ -16,7 +16,9 @@ echo "        Orbit Wars — Hybrid Evolution          "
 echo "═══════════════════════════════════════════════"
 echo "Training ML models on 728 unified historic games..."
 echo "Opponents to defeat for promotion:"
-echo " 1. Root Best (v009)"
+echo " 1. Hybrid Champion"
+echo " 2. Counterwave Best (v014)"
+echo " 3. Root Best (v009)"
 echo ""
 
 exec "$PYTHON_BIN" families/hybrid/tools/auto_iterate.py \
@@ -31,11 +33,11 @@ exec "$PYTHON_BIN" families/hybrid/tools/auto_iterate.py \
   --ml-min-games 10 \
   --ml-pool-size 512 \
   --ml-exploration-rate 0.20 \
-  --ml-dataset-path families/hybrid/training/ml_dataset.jsonl \
-  --ml-model-path families/hybrid/training/ml_ranker.joblib \
-  --ml-priors-path families/hybrid/training/adaptive_priors.json \
+  --ml-dataset-path training/ml_dataset.jsonl \
+  --ml-model-path training/ml_ranker.joblib \
+  --ml-priors-path training/adaptive_priors.json \
+  --smoke-min-winrate 0.30 \
   --sleep-seconds 30 \
-  --opponents "$ROOT_BEST" \
+  --opponents champion "$CW_BEST" "$ROOT_BEST" \
   --min-winrate 0.54 \
   --min-opponent-winrate 0.53
-

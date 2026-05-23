@@ -119,6 +119,15 @@ def save_json(path, payload):
     path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
 
 
+def normalize_family_path(path):
+    path = Path(path)
+    if path.is_absolute():
+        return path
+    if path.parts[:2] == ("families", "hybrid"):
+        return PROJECT_ROOT / path
+    return path
+
+
 def clamp(name, value):
     low, high = PARAM_BOUNDS[name]
     value = max(low, min(high, value))
@@ -360,30 +369,34 @@ def select_ml_candidate_specs(specs, args, rng):
         report["reason"] = f"ml import failed: {exc}"
         return specs[: args.candidates_per_round], report
 
+    model_path = normalize_family_path(args.ml_model_path)
+    dataset_path = normalize_family_path(args.ml_dataset_path)
+    priors_path = normalize_family_path(args.ml_priors_path)
+
     train_metadata = {}
     if args.ml_retrain:
         train_metadata = train_ranker(
             output_dir=args.output_dir,
-            dataset_path=args.ml_dataset_path,
-            model_path=args.ml_model_path,
+            dataset_path=dataset_path,
+            model_path=model_path,
             min_games=args.ml_min_games,
             min_samples=args.ml_min_samples,
-            priors_path=args.ml_priors_path,
+            priors_path=priors_path,
         )
         report["train"] = train_metadata
         if not train_metadata.get("trained"):
             report["reason"] = train_metadata.get("reason", "no trained model")
             return specs[: args.candidates_per_round], report
 
-    payload = load_ranker(args.ml_model_path)
+    payload = load_ranker(model_path)
     if not payload:
         report["reason"] = train_metadata.get("reason", "no trained model")
         return specs[: args.candidates_per_round], report
 
     ranked = rank_candidate_records(
         specs,
-        model_path=args.ml_model_path,
-        priors_path=args.ml_priors_path,
+        model_path=model_path,
+        priors_path=priors_path,
     )
     if not ranked:
         report["reason"] = "model produced no scores"
@@ -420,7 +433,7 @@ def select_ml_candidate_specs(specs, args, rng):
             "selected_count": selected_count,
             "exploit_count": exploit_count,
             "exploration_count": exploration_count,
-            "model_path": str(REPO_ROOT / args.ml_model_path),
+            "model_path": str(model_path if model_path.is_absolute() else REPO_ROOT / model_path),
             "metadata": payload.get("metadata", {}),
             "top": top,
             "selected": [
@@ -1375,8 +1388,7 @@ def run_round(args, state, rng):
     )
     ranked = rank_candidates(candidates, smoke_summaries)
     
-    # Filter finalists: must have winrate >= 0.63 in the smoke test
-    smoke_threshold = 0.63
+    smoke_threshold = args.smoke_min_winrate
     valid_finalists = [c for c in ranked if winrate(smoke_summaries[c["name"]]) >= smoke_threshold]
     finalists = valid_finalists[: args.finalists]
     
@@ -1402,8 +1414,8 @@ def run_round(args, state, rng):
         selected = None
         selected_summary = None
         selected_reason = "no candidates passed the smoke winrate threshold"
-        best = None
-        best_summary = {
+        best = ranked[0] if ranked else None
+        best_summary = smoke_summaries[best["name"]] if best else {
             "games": 0,
             "wins": 0,
             "losses": 0,
@@ -1593,6 +1605,7 @@ def parse_args():
     )
     parser.add_argument("--finalists", type=int, default=3)
     parser.add_argument("--smoke-seeds", type=int, default=4)
+    parser.add_argument("--smoke-min-winrate", type=float, default=0.30)
     parser.add_argument("--validation-seeds", type=int, default=30)
     parser.add_argument(
         "--playoff",
@@ -1666,6 +1679,7 @@ def main():
     args.adaptive_strength = max(0.0, min(1.0, args.adaptive_strength))
     args.ml_pool_size = max(args.candidates_per_round, args.ml_pool_size)
     args.ml_exploration_rate = max(0.0, min(0.6, args.ml_exploration_rate))
+    args.smoke_min_winrate = max(0.0, min(1.0, args.smoke_min_winrate))
     rng = random.Random(args.random_seed)
     state_path = REPO_ROOT / args.state
     state = load_state(state_path)

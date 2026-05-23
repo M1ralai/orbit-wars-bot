@@ -79,17 +79,36 @@ PARAM_BOUNDS = {
 
 def build_template():
     bot_dir = Path(__file__).resolve().parent.parent / "bot"
-    order = ["params.py", "geometry.py", "state.py", "scoring.py", "strategy.py"]
+    order = [
+        "params.py",
+        "geometry.py",
+        "state.py",
+        "scoring.py",
+        "strategies/defense.py",
+        "strategies/intel.py",
+        "strategies/snipe_hijack.py",
+        "strategies/honeypot.py",
+        "strategies/feint.py",
+        "strategies/pressure.py",
+        "strategy.py",
+    ]
     lines = ["import math"]
 
     for filename in order:
         content = (bot_dir / filename).read_text(encoding="utf-8")
+        skip_import_block = False
         for line in content.splitlines():
+            if skip_import_block:
+                if line.strip() == ")":
+                    skip_import_block = False
+                continue
             if (
                 line.startswith("import math")
                 or line.startswith("from bot.")
                 or line.startswith("import bot.")
             ):
+                if line.rstrip().endswith("("):
+                    skip_import_block = True
                 continue
             lines.append(line)
 
