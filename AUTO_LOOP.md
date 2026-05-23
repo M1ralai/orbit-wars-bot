@@ -17,6 +17,14 @@ Builds `training/replay_examples.jsonl` and `training/replay_signals.json` from 
 Put external public episode ids, one per line, in `replays/external_episode_ids.txt`; the intake script will download any missing ones.
 `tools/auto_iterate.py` automatically uses `training/replay_signals.json` when it exists.
 The signal file now includes overall, early/mid/late, and enemy/neutral target profiles; round reports include `replay_signal`, `candidate_bases`, and `finalist_bases` so replay-derived candidates are auditable.
+`tools/auto_iterate.py` also reads recent round reports and writes `training/adaptive_priors.json`; these priors bias future mutations toward parameter directions that beat recent losers, while still leaving random exploration on.
+`tools/ml_ranker.py` trains a scikit-learn candidate ranker from local validation history. With `--ml-ranker`, each round can generate a larger candidate pool and only spend real match time on the model's best picks plus a small exploration slice.
+
+```bash
+.venv/bin/python tools/ml_ranker.py train
+```
+
+Builds `training/ml_dataset.jsonl`, `training/ml_ranker.joblib`, and `training/ml_ranker.metadata.json` from local validation history.
 
 ```bash
 .venv/bin/python tools/auto_iterate.py --rounds 1
@@ -25,7 +33,7 @@ The signal file now includes overall, early/mid/late, and enemy/neutral target p
 Runs one local search round:
 
 1. Generate parameter-mutated agents under `auto_runs/`.
-2. Smoke-test them against `v0_1`, `main`, and `production_hunter`.
+2. Smoke-test them against the current `champion`.
 3. Validate the top finalists on more seeds.
 4. Gate all validated finalists.
 5. If more than one finalist passes, run a seeded head-to-head playoff among them.
@@ -40,24 +48,29 @@ For an unattended overnight loop with Kaggle submission enabled:
   --candidates-per-round 16 \
   --finalists 8 \
   --smoke-seeds 6 \
-  --validation-seeds 20 \
+  --validation-seeds 30 \
   --playoff-seeds 6 \
   --workers 4 \
+  --adaptive-strength 0.65 \
+  --ml-ranker \
+  --ml-pool-size 512 \
+  --ml-exploration-rate 0.20 \
   --sleep-seconds 0 \
   --submit \
-  --max-submissions 3
+  --max-submissions 3 \
+  --submit-cooldown-minutes 180
 ```
 
 The submit path is deliberately gated. By default it requires:
 
 - combined validation winrate >= `0.62`
 - every opponent winrate >= `0.54`
-- `production_hunter` winrate >= `0.58`
+- `champion` winrate >= `0.56`
 - at least `60` validation games
 - playoff champion when multiple finalists pass gates
 - zero runtime errors
 - at most one Kaggle submit per run
-- 120 minutes between submits
+- 180 minutes between submits in the unattended command above
 
 On an M2 MacBook Air, start with `--workers 4`. Try `--workers 6` if thermals are fine; `8` can work but may throttle on long runs.
 

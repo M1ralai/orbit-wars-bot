@@ -107,3 +107,59 @@ Auto-promoted local candidate.
   - `v0_1`: 0.925 (37/40)
   - `main`: 1.000 (40/40)
   - `production_hunter`: 0.950 (38/40)
+
+## auto_v006_20260522_221515_auto_r0022_015_elite_auto_r0013_008_champion_template
+
+Auto-promoted local candidate.
+
+- Source: `/Users/atahandemirer/Developer/orbit-wars-bot/agents/versions/auto_v006_20260522_221515_auto_r0022_015_elite_auto_r0013_008_champion_template.py`
+- Decision: passed gate and won playoff from 4 entrants
+- Validation winrate: `0.955`
+- Validation score: `1.095`
+- Avg production delta: `67.9`
+- Avg ship delta: `3422.1`
+- Opponent breakdown:
+  - `champion:auto_v002_20260521_013440_manual_r0008_v3`: 0.825 (33/40)
+  - `v0_2`: 0.975 (39/40)
+  - `v0_1`: 1.000 (40/40)
+  - `main`: 1.000 (40/40)
+  - `production_hunter`: 0.975 (39/40)
+
+## auto_v007_20260522_224349_auto_r0025_010_elite_auto_r0018_008_champion_template
+
+Auto-promoted local candidate.
+
+- Source: `/Users/atahandemirer/Developer/orbit-wars-bot/agents/versions/auto_v007_20260522_224349_auto_r0025_010_elite_auto_r0018_008_champion_template.py`
+- Decision: passed gate; no playoff needed
+- Validation winrate: `0.633`
+- Validation score: `0.773`
+- Avg production delta: `15.8`
+- Avg ship delta: `512.0`
+- Opponent breakdown:
+  - `champion:auto_v006_20260522_221515_auto_r0022_015_elite_auto_r0013_008_champion_template`: 0.633 (38/60)
+
+## auto_v008_20260522_234021_auto_r0035_473_champion_template
+
+Auto-promoted local candidate.
+
+- Source: `/Users/atahandemirer/Developer/orbit-wars-bot/agents/versions/auto_v008_20260522_234021_auto_r0035_473_champion_template.py`
+- Decision: passed gate; no playoff needed
+- Validation winrate: `0.633`
+- Validation score: `0.773`
+- Avg production delta: `13.1`
+- Avg ship delta: `652.7`
+- Opponent breakdown:
+  - `champion:auto_v007_20260522_224349_auto_r0025_010_elite_auto_r0018_008_champion_template`: 0.633 (38/60)
+
+## auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template
+
+Auto-promoted local candidate.
+
+- Source: `/Users/atahandemirer/Developer/orbit-wars-bot/agents/versions/auto_v009_20260522_234815_auto_r0037_077_elite_auto_r0020_009_elite_auto_r0017_014_elite_auto_r0016_004_champion_template.py`
+- Decision: passed gate and won playoff from 2 entrants
+- Validation winrate: `0.667`
+- Validation score: `0.807`
+- Avg production delta: `29.9`
+- Avg ship delta: `966.4`
+- Opponent breakdown:
+  - `champion:auto_v008_20260522_234021_auto_r0035_473_champion_template`: 0.667 (40/60)

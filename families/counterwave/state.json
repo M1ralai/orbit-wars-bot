@@ -1,0 +1,11 @@
+{
+  "best_version": "auto_v014_20260523_040214_auto_r0042_121_cw_champion_template",
+  "best_version_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r0042_121_cw_champion_template.py",
+  "last_package_main": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/submission_package/main.py",
+  "last_promotion_at": "2026-05-23T04:02:14.874512+00:00",
+  "last_round_at": "2026-05-23T05:13:01.407618+00:00",
+  "last_round_report": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/runs/round_0057_20260523_050835/round_report.json",
+  "promotions": 14,
+  "round": 57,
+  "submissions": 0
+}

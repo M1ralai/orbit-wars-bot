@@ -1,0 +1,684 @@
+{
+  "adaptive_mutation": {
+    "down": [
+      "comet_bonus",
+      "enemy_extra",
+      "high_prod_extra",
+      "attack_fraction",
+      "max_attacks_per_turn",
+      "high_prod_tax",
+      "counter_bonus",
+      "high_distance_weight"
+    ],
+    "enabled": true,
+    "history_rounds": 19,
+    "parameter_count": 15,
+    "reports_used": 19,
+    "strength": 0.65,
+    "up": [
+      "panic_reserve_mult",
+      "enemy_weak_bonus",
+      "production_weight",
+      "short_hop_range",
+      "short_hop_bonus",
+      "ship_weight",
+      "min_reserve"
+    ],
+    "validated_candidates": 152
+  },
+  "best": {
+    "base": "cw_champion_template",
+    "ml_model_samples": 152,
+    "ml_rank": 9,
+    "ml_score": 0.411121,
+    "ml_selected": true,
+    "name": "auto_r0020_399_cw_champion_template",
+    "params": {
+      "attack_fraction": 0.7732,
+      "comet_bonus": 17,
+      "counter_bonus": 34,
+      "distance_weight": 2.9071,
+      "enemy_bonus": 44,
+      "enemy_extra": 14,
+      "enemy_weak_bonus": 0.0,
+      "high_distance_weight": 2.1853,
+      "high_prod_extra": 0,
+      "high_prod_tax": 23,
+      "high_production_weight": 46,
+      "high_ship_weight": 0.7003,
+      "max_attacks_per_turn": 1,
+      "min_reserve": 7,
+      "min_ships": 16,
+      "neutral_bonus": 7,
+      "neutral_tax": 12,
+      "overkill": 8,
+      "panic_reserve_mult": 1.1356,
+      "pressure_divisor": 20,
+      "pressure_max": 30,
+      "production_weight": 9,
+      "reserve_prod_mult": 3.6742,
+      "ship_weight": 1.0384,
+      "short_hop_bonus": 0.0,
+      "short_hop_range": 17
+    },
+    "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/runs/round_0020_20260523_021336/candidates/auto_r0020_399_cw_champion_template.py"
+  },
+  "best_summary": {
+    "avg_production_delta": -17.37,
+    "avg_ship_delta": -3607.25,
+    "by_opponent": {
+      "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+        "avg_production_delta": -17.37,
+        "avg_ship_delta": -3607.25,
+        "errors": 0,
+        "games": 60,
+        "losses": 38,
+        "winrate": 0.3667,
+        "wins": 22
+      }
+    },
+    "draws": 0,
+    "error_seeds": [],
+    "errors": 0,
+    "games": 60,
+    "loss_seeds": [
+      201002,
+      201002,
+      201001,
+      201001,
+      201000,
+      201000,
+      201004,
+      201007,
+      201007,
+      201008,
+      201009,
+      201012
+    ],
+    "losses": 38,
+    "score": 0.2267,
+    "winrate": 0.3667,
+    "wins": 22
+  },
+  "candidate_bases": {
+    "cw_champion_template": 6,
+    "elite_auto_r0001_005_cw_champion_template": 1,
+    "elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template": 3,
+    "elite_auto_r0010_259_cw_champion_template": 1,
+    "elite_auto_r0010_285_cw_champion_template": 2,
+    "elite_auto_r0011_321_cw_champion_template": 1,
+    "elite_auto_r0016_424_cw_champion_template": 2
+  },
+  "finalist_bases": {
+    "cw_champion_template": 5,
+    "elite_auto_r0010_259_cw_champion_template": 1,
+    "elite_auto_r0010_285_cw_champion_template": 2
+  },
+  "gate": {
+    "passed": false,
+    "reason": "no finalist passed; best failed: winrate below 0.62"
+  },
+  "generated_at": "20260523_021336",
+  "ml_ranker": {
+    "enabled": true,
+    "exploit_count": 13,
+    "exploration_count": 3,
+    "metadata": {
+      "dataset_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/training/ml_dataset.jsonl",
+      "features": 176,
+      "holdout": {
+        "mae": 0.1423,
+        "r2": 0.2392,
+        "samples": 34
+      },
+      "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/training/ml_ranker.joblib",
+      "priors_enabled": true,
+      "priors_parameter_count": 15,
+      "priors_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/training/adaptive_priors.json",
+      "samples": 152,
+      "sklearn_version": "1.8.0",
+      "target": "quality = winrate * 0.7 + score * 0.3",
+      "trained": true
+    },
+    "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/training/ml_ranker.joblib",
+    "pool_size": 512,
+    "selected": [
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 1,
+        "ml_score": 0.464221,
+        "name": "auto_r0020_396_cw_champion_template"
+      },
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 2,
+        "ml_score": 0.444285,
+        "name": "auto_r0020_090_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template",
+        "ml_rank": 3,
+        "ml_score": 0.441675,
+        "name": "auto_r0020_337_elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0010_285_cw_champion_template",
+        "ml_rank": 4,
+        "ml_score": 0.422615,
+        "name": "auto_r0020_124_elite_auto_r0010_285_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0010_285_cw_champion_template",
+        "ml_rank": 5,
+        "ml_score": 0.422486,
+        "name": "auto_r0020_163_elite_auto_r0010_285_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0016_424_cw_champion_template",
+        "ml_rank": 6,
+        "ml_score": 0.417801,
+        "name": "auto_r0020_496_elite_auto_r0016_424_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template",
+        "ml_rank": 7,
+        "ml_score": 0.417391,
+        "name": "auto_r0020_222_elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0010_259_cw_champion_template",
+        "ml_rank": 8,
+        "ml_score": 0.414235,
+        "name": "auto_r0020_121_elite_auto_r0010_259_cw_champion_template"
+      },
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 9,
+        "ml_score": 0.411121,
+        "name": "auto_r0020_399_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template",
+        "ml_rank": 10,
+        "ml_score": 0.410232,
+        "name": "auto_r0020_362_elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0016_424_cw_champion_template",
+        "ml_rank": 11,
+        "ml_score": 0.409373,
+        "name": "auto_r0020_461_elite_auto_r0016_424_cw_champion_template"
+      },
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 12,
+        "ml_score": 0.409247,
+        "name": "auto_r0020_276_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0011_321_cw_champion_template",
+        "ml_rank": 13,
+        "ml_score": 0.406881,
+        "name": "auto_r0020_226_elite_auto_r0011_321_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0001_005_cw_champion_template",
+        "ml_rank": 338,
+        "ml_score": 0.272764,
+        "name": "auto_r0020_171_elite_auto_r0001_005_cw_champion_template"
+      },
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 38,
+        "ml_score": 0.380533,
+        "name": "auto_r0020_234_cw_champion_template"
+      },
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 86,
+        "ml_score": 0.355944,
+        "name": "auto_r0020_393_cw_champion_template"
+      }
+    ],
+    "selected_count": 16,
+    "top": [
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 1,
+        "ml_score": 0.464221,
+        "name": "auto_r0020_396_cw_champion_template"
+      },
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 2,
+        "ml_score": 0.444285,
+        "name": "auto_r0020_090_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template",
+        "ml_rank": 3,
+        "ml_score": 0.441675,
+        "name": "auto_r0020_337_elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0010_285_cw_champion_template",
+        "ml_rank": 4,
+        "ml_score": 0.422615,
+        "name": "auto_r0020_124_elite_auto_r0010_285_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0010_285_cw_champion_template",
+        "ml_rank": 5,
+        "ml_score": 0.422486,
+        "name": "auto_r0020_163_elite_auto_r0010_285_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0016_424_cw_champion_template",
+        "ml_rank": 6,
+        "ml_score": 0.417801,
+        "name": "auto_r0020_496_elite_auto_r0016_424_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template",
+        "ml_rank": 7,
+        "ml_score": 0.417391,
+        "name": "auto_r0020_222_elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0010_259_cw_champion_template",
+        "ml_rank": 8,
+        "ml_score": 0.414235,
+        "name": "auto_r0020_121_elite_auto_r0010_259_cw_champion_template"
+      },
+      {
+        "base": "cw_champion_template",
+        "ml_rank": 9,
+        "ml_score": 0.411121,
+        "name": "auto_r0020_399_cw_champion_template"
+      },
+      {
+        "base": "elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template",
+        "ml_rank": 10,
+        "ml_score": 0.410232,
+        "name": "auto_r0020_362_elite_auto_r0003_010_elite_auto_r0002_003_cw_champion_template"
+      }
+    ],
+    "train": {
+      "dataset_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/training/ml_dataset.jsonl",
+      "features": 176,
+      "holdout": {
+        "mae": 0.1423,
+        "r2": 0.2392,
+        "samples": 34
+      },
+      "model_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/training/ml_ranker.joblib",
+      "priors_enabled": true,
+      "priors_parameter_count": 15,
+      "priors_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/training/adaptive_priors.json",
+      "samples": 152,
+      "sklearn_version": "1.8.0",
+      "target": "quality = winrate * 0.7 + score * 0.3",
+      "trained": true
+    },
+    "used": true
+  },
+  "opponents": [
+    "champion"
+  ],
+  "playoff": {
+    "enabled": true,
+    "played": false,
+    "qualified": [],
+    "qualified_count": 0
+  },
+  "replay_signal": {
+    "base_count": 0,
+    "base_names": [],
+    "examples": 0,
+    "path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/training/replay_signals.json",
+    "phase_rates": {},
+    "target_owner_rates": {}
+  },
+  "round": 20,
+  "smoke_telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/telemetry/round_0020_smoke.jsonl",
+  "validated_finalists": [
+    {
+      "candidate": "auto_r0020_399_cw_champion_template",
+      "passed": false,
+      "reason": "winrate below 0.62",
+      "summary": {
+        "avg_production_delta": -17.37,
+        "avg_ship_delta": -3607.25,
+        "by_opponent": {
+          "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+            "avg_production_delta": -17.37,
+            "avg_ship_delta": -3607.25,
+            "errors": 0,
+            "games": 60,
+            "losses": 38,
+            "winrate": 0.3667,
+            "wins": 22
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          201002,
+          201002,
+          201001,
+          201001,
+          201000,
+          201000,
+          201004,
+          201007,
+          201007,
+          201008,
+          201009,
+          201012
+        ],
+        "losses": 38,
+        "score": 0.2267,
+        "winrate": 0.3667,
+        "wins": 22
+      }
+    },
+    {
+      "candidate": "auto_r0020_163_elite_auto_r0010_285_cw_champion_template",
+      "passed": false,
+      "reason": "winrate below 0.62",
+      "summary": {
+        "avg_production_delta": -16.65,
+        "avg_ship_delta": -1769.97,
+        "by_opponent": {
+          "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+            "avg_production_delta": -16.65,
+            "avg_ship_delta": -1769.97,
+            "errors": 0,
+            "games": 60,
+            "losses": 39,
+            "winrate": 0.35,
+            "wins": 21
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          201001,
+          201001,
+          201004,
+          201006,
+          201006,
+          201004,
+          201007,
+          201007,
+          201008,
+          201009,
+          201009,
+          201012
+        ],
+        "losses": 39,
+        "score": 0.21,
+        "winrate": 0.35,
+        "wins": 21
+      }
+    },
+    {
+      "candidate": "auto_r0020_090_cw_champion_template",
+      "passed": false,
+      "reason": "winrate below 0.62",
+      "summary": {
+        "avg_production_delta": -26.32,
+        "avg_ship_delta": -5933.27,
+        "by_opponent": {
+          "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+            "avg_production_delta": -26.32,
+            "avg_ship_delta": -5933.27,
+            "errors": 0,
+            "games": 60,
+            "losses": 41,
+            "winrate": 0.3167,
+            "wins": 19
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          201002,
+          201002,
+          201001,
+          201001,
+          201000,
+          201000,
+          201006,
+          201006,
+          201007,
+          201004,
+          201007,
+          201005
+        ],
+        "losses": 41,
+        "score": 0.1767,
+        "winrate": 0.3167,
+        "wins": 19
+      }
+    },
+    {
+      "candidate": "auto_r0020_234_cw_champion_template",
+      "passed": false,
+      "reason": "winrate below 0.62",
+      "summary": {
+        "avg_production_delta": -32.05,
+        "avg_ship_delta": -7104.52,
+        "by_opponent": {
+          "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+            "avg_production_delta": -32.05,
+            "avg_ship_delta": -7104.52,
+            "errors": 0,
+            "games": 60,
+            "losses": 44,
+            "winrate": 0.2667,
+            "wins": 16
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          201002,
+          201001,
+          201001,
+          201000,
+          201000,
+          201006,
+          201006,
+          201004,
+          201004,
+          201009,
+          201009,
+          201011
+        ],
+        "losses": 44,
+        "score": 0.1267,
+        "winrate": 0.2667,
+        "wins": 16
+      }
+    },
+    {
+      "candidate": "auto_r0020_124_elite_auto_r0010_285_cw_champion_template",
+      "passed": false,
+      "reason": "winrate below 0.62",
+      "summary": {
+        "avg_production_delta": -34.15,
+        "avg_ship_delta": -7134.47,
+        "by_opponent": {
+          "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+            "avg_production_delta": -34.15,
+            "avg_ship_delta": -7134.47,
+            "errors": 0,
+            "games": 60,
+            "losses": 45,
+            "winrate": 0.25,
+            "wins": 15
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          201002,
+          201003,
+          201003,
+          201001,
+          201001,
+          201000,
+          201000,
+          201006,
+          201006,
+          201004,
+          201004,
+          201007
+        ],
+        "losses": 45,
+        "score": 0.11,
+        "winrate": 0.25,
+        "wins": 15
+      }
+    },
+    {
+      "candidate": "auto_r0020_396_cw_champion_template",
+      "passed": false,
+      "reason": "winrate below 0.62",
+      "summary": {
+        "avg_production_delta": -38.57,
+        "avg_ship_delta": -2275.27,
+        "by_opponent": {
+          "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+            "avg_production_delta": -38.57,
+            "avg_ship_delta": -2275.27,
+            "errors": 0,
+            "games": 60,
+            "losses": 47,
+            "winrate": 0.2167,
+            "wins": 13
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          201002,
+          201002,
+          201003,
+          201003,
+          201001,
+          201001,
+          201000,
+          201000,
+          201006,
+          201006,
+          201004,
+          201004
+        ],
+        "losses": 47,
+        "score": 0.0767,
+        "winrate": 0.2167,
+        "wins": 13
+      }
+    },
+    {
+      "candidate": "auto_r0020_121_elite_auto_r0010_259_cw_champion_template",
+      "passed": false,
+      "reason": "winrate below 0.62",
+      "summary": {
+        "avg_production_delta": -42.17,
+        "avg_ship_delta": -7610.95,
+        "by_opponent": {
+          "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+            "avg_production_delta": -42.17,
+            "avg_ship_delta": -7610.95,
+            "errors": 0,
+            "games": 60,
+            "losses": 49,
+            "winrate": 0.1833,
+            "wins": 11
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          201002,
+          201003,
+          201003,
+          201001,
+          201002,
+          201001,
+          201000,
+          201000,
+          201004,
+          201004,
+          201005,
+          201006
+        ],
+        "losses": 49,
+        "score": 0.0433,
+        "winrate": 0.1833,
+        "wins": 11
+      }
+    },
+    {
+      "candidate": "auto_r0020_393_cw_champion_template",
+      "passed": false,
+      "reason": "winrate below 0.62",
+      "summary": {
+        "avg_production_delta": -43.78,
+        "avg_ship_delta": -11550.92,
+        "by_opponent": {
+          "champion:auto_v010_20260523_013046_auto_r0010_285_cw_champion_template": {
+            "avg_production_delta": -43.78,
+            "avg_ship_delta": -11550.92,
+            "errors": 0,
+            "games": 60,
+            "losses": 51,
+            "winrate": 0.15,
+            "wins": 9
+          }
+        },
+        "draws": 0,
+        "error_seeds": [],
+        "errors": 0,
+        "games": 60,
+        "loss_seeds": [
+          201002,
+          201001,
+          201001,
+          201003,
+          201003,
+          201000,
+          201000,
+          201006,
+          201006,
+          201004,
+          201004,
+          201007
+        ],
+        "losses": 51,
+        "score": 0.01,
+        "winrate": 0.15,
+        "wins": 9
+      }
+    }
+  ],
+  "validation_telemetry": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/telemetry/round_0020_validation.jsonl",
+  "workers": 8
+}

@@ -1,0 +1,8 @@
+{
+  "cw_anchor_hold": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/agents/generated/cw_anchor_hold.py",
+  "cw_counter_punch": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/agents/generated/cw_counter_punch.py",
+  "cw_edge_bleed": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/agents/generated/cw_edge_bleed.py",
+  "cw_fortress": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/agents/generated/cw_fortress.py",
+  "cw_low_neutral_raid": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/agents/generated/cw_low_neutral_raid.py",
+  "cw_probe_swarm": "/Users/atahandemirer/Developer/orbit-wars-bot/families/counterwave/agents/generated/cw_probe_swarm.py"
+}

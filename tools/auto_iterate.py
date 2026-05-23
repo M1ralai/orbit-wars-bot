@@ -22,7 +22,7 @@ from generate_agents import CANDIDATES, TEMPLATE  # noqa: E402
 from tournament import AGENTS, run_match  # noqa: E402
 
 
-DEFAULT_OPPONENTS = ["champion", "v0_1", "main", "production_hunter"]
+DEFAULT_OPPONENTS = ["champion"]
 DEFAULT_COMPETITION = "orbit-wars"
 
 INT_PARAMS = {
@@ -82,7 +82,17 @@ def clamp(name, value):
     return round(float(value), 4)
 
 
-def mutate_params(base, rng):
+def param_prior(priors, name):
+    if not priors:
+        return None
+
+    prior = priors.get("parameters", {}).get(name)
+    if prior and prior.get("direction") in ("up", "down"):
+        return prior
+    return None
+
+
+def mutate_params(base, rng, priors=None, adaptive_strength=0.0):
     params = dict(base)
     
     # Remove keys not in PARAM_BOUNDS (like 'source')
@@ -104,17 +114,35 @@ def mutate_params(base, rng):
 
         low, high = PARAM_BOUNDS[name]
         span = high - low
+        prior = param_prior(priors, name)
+        use_prior = prior and rng.random() < adaptive_strength
+        direction = 1 if prior and prior.get("direction") == "up" else -1
+
         if name in INT_PARAMS:
-            delta = rng.choice([-3, -2, -1, 1, 2, 3])
-            if rng.random() < 0.2:
-                delta *= 2
+            if use_prior:
+                delta = rng.choice([1, 2, 3]) * direction
+                if rng.random() < 0.2:
+                    delta *= 2
+            else:
+                delta = rng.choice([-3, -2, -1, 1, 2, 3])
+                if rng.random() < 0.2:
+                    delta *= 2
             params[name] = clamp(name, value + delta)
         else:
-            delta = rng.uniform(-0.12, 0.12) * span
+            if use_prior:
+                delta = rng.uniform(0.02, 0.12) * span * direction
+            else:
+                delta = rng.uniform(-0.12, 0.12) * span
             params[name] = clamp(name, value + delta)
 
     for name in rng.sample(list(params), k=rng.randint(1, 3)):
         low, high = PARAM_BOUNDS[name]
+        prior = param_prior(priors, name)
+        use_prior = prior and rng.random() < adaptive_strength
+        if use_prior:
+            low = max(low, prior["good_low"])
+            high = min(high, prior["good_high"])
+
         if name in INT_PARAMS:
             params[name] = int(rng.randint(int(low), int(high)))
         else:
@@ -233,22 +261,132 @@ def load_replay_base(path):
     return bases, signals
 
 
-def generate_round_candidates(round_index, count, output_dir, rng, base_items):
+def generate_candidate_specs(round_index, count, rng, base_items, priors=None, adaptive_strength=0.0):
     records = []
     for candidate_index in range(count):
         base_name, base_params = rng.choice(base_items)
-        params = mutate_params(base_params, rng)
+        params = mutate_params(base_params, rng, priors, adaptive_strength)
         name = f"auto_r{round_index:04d}_{candidate_index:03d}_{base_name}"
-        path = write_candidate(name, params, output_dir)
         records.append(
             {
                 "name": name,
-                "path": str(path),
                 "base": base_name,
                 "params": params,
             }
         )
     return records
+
+
+def materialize_candidate_specs(specs, output_dir):
+    records = []
+    for spec in specs:
+        record = dict(spec)
+        path = write_candidate(record["name"], record["params"], output_dir)
+        record["path"] = str(path)
+        records.append(record)
+    return records
+
+
+def generate_round_candidates(round_index, count, output_dir, rng, base_items, priors=None, adaptive_strength=0.0):
+    specs = generate_candidate_specs(
+        round_index,
+        count,
+        rng,
+        base_items,
+        priors,
+        adaptive_strength,
+    )
+    return materialize_candidate_specs(specs, output_dir)
+
+
+def select_ml_candidate_specs(specs, args, rng):
+    report = {
+        "enabled": bool(args.ml_ranker),
+        "pool_size": len(specs),
+        "selected_count": min(args.candidates_per_round, len(specs)),
+        "used": False,
+    }
+    if not args.ml_ranker:
+        return specs[: args.candidates_per_round], report
+
+    try:
+        from ml_ranker import load_ranker, rank_candidate_records, train_ranker
+    except Exception as exc:
+        report["reason"] = f"ml import failed: {exc}"
+        return specs[: args.candidates_per_round], report
+
+    train_metadata = {}
+    if args.ml_retrain:
+        train_metadata = train_ranker(
+            output_dir=args.output_dir,
+            dataset_path=args.ml_dataset_path,
+            model_path=args.ml_model_path,
+            min_games=args.ml_min_games,
+            min_samples=args.ml_min_samples,
+            priors_path=args.ml_priors_path,
+        )
+        report["train"] = train_metadata
+
+    payload = load_ranker(args.ml_model_path)
+    if not payload:
+        report["reason"] = train_metadata.get("reason", "no trained model")
+        return specs[: args.candidates_per_round], report
+
+    ranked = rank_candidate_records(
+        specs,
+        model_path=args.ml_model_path,
+        priors_path=args.ml_priors_path,
+    )
+    if not ranked:
+        report["reason"] = "model produced no scores"
+        return specs[: args.candidates_per_round], report
+
+    selected_count = min(args.candidates_per_round, len(ranked))
+    exploration_count = min(
+        selected_count - 1,
+        max(0, int(round(selected_count * args.ml_exploration_rate))),
+    )
+    exploit_count = selected_count - exploration_count
+    selected = list(ranked[:exploit_count])
+    exploration_pool = list(ranked[exploit_count:])
+    rng.shuffle(exploration_pool)
+    selected.extend(exploration_pool[:exploration_count])
+
+    rank_by_name = {record["name"]: index for index, record in enumerate(ranked, start=1)}
+    for record in selected:
+        record["ml_rank"] = rank_by_name[record["name"]]
+        record["ml_selected"] = True
+
+    top = [
+        {
+            "name": record["name"],
+            "base": record.get("base"),
+            "ml_score": record.get("ml_score"),
+            "ml_rank": index,
+        }
+        for index, record in enumerate(ranked[:10], start=1)
+    ]
+    report.update(
+        {
+            "used": True,
+            "selected_count": selected_count,
+            "exploit_count": exploit_count,
+            "exploration_count": exploration_count,
+            "model_path": str(REPO_ROOT / args.ml_model_path),
+            "metadata": payload.get("metadata", {}),
+            "top": top,
+            "selected": [
+                {
+                    "name": record["name"],
+                    "base": record.get("base"),
+                    "ml_score": record.get("ml_score"),
+                    "ml_rank": record.get("ml_rank"),
+                }
+                for record in selected
+            ],
+        }
+    )
+    return selected, report
 
 
 def load_candidate_agents(specs, round_index):
@@ -291,12 +429,10 @@ def read_state_for_champion(path):
 
 def champion_path_from_state(state):
     candidates = [
+        state.get("best_version_path"),
         state.get("last_submitted_version_path"),
         state.get("submitted_version_path"),
     ]
-
-    if int(state.get("submissions", 0)) > 0:
-        candidates.append(state.get("best_version_path"))
 
     candidates.extend(
         [
@@ -432,6 +568,151 @@ def candidate_rollup(candidates):
         base = candidate.get("base", "unknown")
         counts[base] = counts.get(base, 0) + 1
     return dict(sorted(counts.items()))
+
+
+def percentile(values, q):
+    values = sorted(values)
+    if not values:
+        return 0.0
+    if len(values) == 1:
+        return values[0]
+
+    position = (len(values) - 1) * q
+    lower = math.floor(position)
+    upper = math.ceil(position)
+    if lower == upper:
+        return values[int(position)]
+    weight = position - lower
+    return values[lower] * (1 - weight) + values[upper] * weight
+
+
+def load_adaptive_priors(args):
+    if not args.adaptive_mutation:
+        return {"enabled": False, "reason": "disabled"}
+
+    output_dir = REPO_ROOT / args.output_dir
+    reports = sorted(
+        output_dir.glob("round_*/round_report.json"),
+        key=lambda path: path.stat().st_mtime,
+        reverse=True,
+    )[: args.adaptive_history_rounds]
+    samples = {name: [] for name in PARAM_BOUNDS}
+    report_count = 0
+    candidate_count = 0
+
+    for report_path in reports:
+        candidates_path = report_path.parent / "candidates.json"
+        if not candidates_path.exists():
+            continue
+
+        try:
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            candidates = json.loads(candidates_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+
+        candidate_by_name = {candidate["name"]: candidate for candidate in candidates}
+        validated = report.get("validated_finalists", [])
+        if not validated:
+            continue
+
+        report_count += 1
+        for result in validated:
+            summary = result.get("summary", {})
+            if summary.get("games", 0) < 20:
+                continue
+
+            candidate = candidate_by_name.get(result.get("candidate"))
+            if not candidate:
+                continue
+
+            params = candidate.get("params", {})
+            winrate_value = float(summary.get("winrate", 0.0))
+            score_value = float(summary.get("score", winrate_value))
+            quality = winrate_value * 0.75 + score_value * 0.25
+            candidate_count += 1
+
+            for name in PARAM_BOUNDS:
+                if name in params:
+                    samples[name].append(
+                        {
+                            "value": float(params[name]),
+                            "quality": quality,
+                            "winrate": winrate_value,
+                        }
+                    )
+
+    priors = {}
+    for name, param_samples in samples.items():
+        if len(param_samples) < args.adaptive_min_samples:
+            continue
+
+        ordered = sorted(param_samples, key=lambda item: item["quality"])
+        bucket_size = max(3, len(ordered) // 3)
+        bad = ordered[:bucket_size]
+        good = ordered[-bucket_size:]
+
+        good_values = [item["value"] for item in good]
+        bad_values = [item["value"] for item in bad]
+        good_avg = sum(good_values) / len(good_values)
+        bad_avg = sum(bad_values) / len(bad_values)
+        low, high = PARAM_BOUNDS[name]
+        span = high - low
+        min_gap = max(span * 0.035, 0.25 if name in INT_PARAMS else 0.015)
+        gap = good_avg - bad_avg
+
+        if abs(gap) < min_gap:
+            continue
+
+        good_low = percentile(good_values, 0.15)
+        good_high = percentile(good_values, 0.85)
+        if good_high <= good_low:
+            good_low = max(low, good_avg - span * 0.05)
+            good_high = min(high, good_avg + span * 0.05)
+
+        priors[name] = {
+            "direction": "up" if gap > 0 else "down",
+            "confidence": round(min(1.0, abs(gap) / span * 4.0), 4),
+            "samples": len(param_samples),
+            "good_avg": round(good_avg, 4),
+            "bad_avg": round(bad_avg, 4),
+            "good_low": clamp(name, good_low),
+            "good_high": clamp(name, good_high),
+            "avg_good_quality": round(sum(item["quality"] for item in good) / len(good), 4),
+            "avg_bad_quality": round(sum(item["quality"] for item in bad) / len(bad), 4),
+        }
+
+    return {
+        "enabled": True,
+        "history_rounds": len(reports),
+        "reports_used": report_count,
+        "validated_candidates": candidate_count,
+        "parameters": priors,
+    }
+
+
+def compact_adaptive_priors(priors):
+    parameters = priors.get("parameters", {})
+    up = sorted(
+        [name for name, prior in parameters.items() if prior["direction"] == "up"],
+        key=lambda name: parameters[name]["confidence"],
+        reverse=True,
+    )
+    down = sorted(
+        [name for name, prior in parameters.items() if prior["direction"] == "down"],
+        key=lambda name: parameters[name]["confidence"],
+        reverse=True,
+    )
+    return {
+        "enabled": priors.get("enabled", False),
+        "history_rounds": priors.get("history_rounds", 0),
+        "reports_used": priors.get("reports_used", 0),
+        "validated_candidates": priors.get("validated_candidates", 0),
+        "strength": priors.get("strength", 0.0),
+        "up": up[:8],
+        "down": down[:8],
+        "parameter_count": len(parameters),
+    }
 
 
 def run_match_job(job):
@@ -962,6 +1243,20 @@ def run_round(args, state, rng):
 
     print(f"round {round_index}: generating {args.candidates_per_round} candidates")
     replay_base_items, replay_signals = load_replay_base(args.replay_signals)
+    adaptive_priors = load_adaptive_priors(args)
+    adaptive_strength = args.adaptive_strength if adaptive_priors.get("enabled") else 0.0
+    adaptive_priors["strength"] = adaptive_strength
+    if adaptive_priors.get("enabled"):
+        save_json(REPO_ROOT / "training" / "adaptive_priors.json", adaptive_priors)
+        prior_summary = compact_adaptive_priors(adaptive_priors)
+        print(
+            "adaptive mutation: "
+            f"samples={prior_summary['validated_candidates']} "
+            f"params={prior_summary['parameter_count']} "
+            f"up={prior_summary['up'][:4]} "
+            f"down={prior_summary['down'][:4]}",
+            flush=True,
+        )
     
     elite_pool_path = REPO_ROOT / "training" / "elite_pool.json"
     elites = []
@@ -987,13 +1282,33 @@ def run_round(args, state, rng):
                     pass
 
     base_items = list(CANDIDATES.items()) + replay_base_items + elites + champion_base
-    candidates = generate_round_candidates(
+    pool_size = args.ml_pool_size if args.ml_ranker else args.candidates_per_round
+    candidate_specs = generate_candidate_specs(
         round_index,
-        args.candidates_per_round,
-        candidate_dir,
+        pool_size,
         rng,
         base_items,
+        adaptive_priors,
+        adaptive_strength,
     )
+    candidate_specs, ml_report = select_ml_candidate_specs(candidate_specs, args, rng)
+    if ml_report.get("used"):
+        metadata = ml_report.get("metadata", {})
+        holdout = metadata.get("holdout", {})
+        best_ml = ml_report.get("top", [{}])[0]
+        print(
+            "ml ranker: "
+            f"pool={ml_report['pool_size']} selected={ml_report['selected_count']} "
+            f"explore={ml_report['exploration_count']} "
+            f"samples={metadata.get('samples', 0)} "
+            f"best={best_ml.get('ml_score', 0):.3f} "
+            f"mae={holdout.get('mae', 'na')}",
+            flush=True,
+        )
+    elif args.ml_ranker:
+        print(f"ml ranker skipped: {ml_report.get('reason', 'unknown reason')}", flush=True)
+
+    candidates = materialize_candidate_specs(candidate_specs, candidate_dir)
     candidates.extend(load_candidate_agents(args.candidate_agent, round_index))
     save_json(run_dir / "candidates.json", candidates)
 
@@ -1094,6 +1409,8 @@ def run_round(args, state, rng):
         },
         "candidate_bases": candidate_rollup(candidates),
         "finalist_bases": candidate_rollup(finalists),
+        "adaptive_mutation": compact_adaptive_priors(adaptive_priors),
+        "ml_ranker": ml_report,
         "best": best,
         "best_summary": compact_summary(best_summary),
         "validated_finalists": gate_results,
@@ -1165,7 +1482,7 @@ def parse_args():
     )
     parser.add_argument("--finalists", type=int, default=3)
     parser.add_argument("--smoke-seeds", type=int, default=4)
-    parser.add_argument("--validation-seeds", type=int, default=12)
+    parser.add_argument("--validation-seeds", type=int, default=30)
     parser.add_argument(
         "--playoff",
         action=argparse.BooleanOptionalAction,
@@ -1181,6 +1498,34 @@ def parse_args():
     )
     parser.add_argument("--seed-start", type=int, default=0)
     parser.add_argument("--opponents", nargs="+", default=DEFAULT_OPPONENTS)
+    parser.add_argument(
+        "--adaptive-mutation",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Bias mutations using recent validation winners and losers.",
+    )
+    parser.add_argument("--adaptive-history-rounds", type=int, default=24)
+    parser.add_argument("--adaptive-min-samples", type=int, default=12)
+    parser.add_argument("--adaptive-strength", type=float, default=0.65)
+    parser.add_argument(
+        "--ml-ranker",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Train/use the sklearn candidate ranker before local smoke tests.",
+    )
+    parser.add_argument("--ml-pool-size", type=int, default=512)
+    parser.add_argument("--ml-exploration-rate", type=float, default=0.2)
+    parser.add_argument("--ml-min-samples", type=int, default=40)
+    parser.add_argument("--ml-min-games", type=int, default=20)
+    parser.add_argument("--ml-model-path", type=Path, default=Path("training/ml_ranker.joblib"))
+    parser.add_argument("--ml-dataset-path", type=Path, default=Path("training/ml_dataset.jsonl"))
+    parser.add_argument("--ml-priors-path", type=Path, default=Path("training/adaptive_priors.json"))
+    parser.add_argument(
+        "--ml-retrain",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Retrain the sklearn ranker at the start of each round.",
+    )
     parser.add_argument(
         "--replay-signals",
         type=Path,
@@ -1207,6 +1552,9 @@ def parse_args():
 def main():
     args = parse_args()
     args.workers = max(1, args.workers)
+    args.adaptive_strength = max(0.0, min(1.0, args.adaptive_strength))
+    args.ml_pool_size = max(args.candidates_per_round, args.ml_pool_size)
+    args.ml_exploration_rate = max(0.0, min(0.6, args.ml_exploration_rate))
     rng = random.Random(args.random_seed)
     state_path = REPO_ROOT / args.state
     state = load_state(state_path)

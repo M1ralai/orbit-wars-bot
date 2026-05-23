@@ -1,0 +1,11 @@
+{
+  "best_version": "v0_1",
+  "best_version_path": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/versions/v0_1.py",
+  "last_package_main": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/submission_package/main.py",
+  "last_promotion_at": "2026-05-23T08:00:00.000000+00:00",
+  "last_round_at": "2026-05-23T12:36:26.551449+00:00",
+  "last_round_report": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/runs/round_0004_20260523_123310/round_report.json",
+  "promotions": 1,
+  "round": 4,
+  "submissions": 0
+}
