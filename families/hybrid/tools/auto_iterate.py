@@ -1,4 +1,5 @@
 import argparse
+import ast
 import json
 import math
 import os
@@ -125,7 +126,7 @@ def normalize_family_path(path):
         return path
     if path.parts[:2] == ("families", "hybrid"):
         return PROJECT_ROOT / path
-    return path
+    return REPO_ROOT / path
 
 
 def clamp(name, value):
@@ -339,6 +340,81 @@ def materialize_candidate_specs(specs, output_dir):
         record["path"] = str(path)
         records.append(record)
     return records
+
+
+def load_base_params_from_agent(path):
+    path = Path(path)
+    try:
+        tree = ast.parse(path.read_text(encoding="utf-8"))
+    except (OSError, SyntaxError):
+        return None
+
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        if not any(isinstance(target, ast.Name) and target.id == "BASE_PARAMS" for target in node.targets):
+            continue
+        try:
+            params = ast.literal_eval(node.value)
+        except (ValueError, SyntaxError):
+            return None
+        if isinstance(params, dict):
+            return {
+                name: clamp(name, params[name])
+                for name in PARAM_BOUNDS
+                if name in params
+            }
+    return None
+
+
+def champion_base_item(state):
+    champion_path = Path(champion_path_from_state(state))
+    params = load_base_params_from_agent(champion_path)
+    if not params:
+        raise SystemExit(f"could not read BASE_PARAMS from hybrid champion: {champion_path}")
+    return f"hybrid_champion_{champion_path.stem}", params, champion_path
+
+
+def load_elite_items(path):
+    path = normalize_family_path(path)
+    if not path.exists():
+        return []
+
+    elite_data = json.loads(path.read_text(encoding="utf-8"))
+    return [
+        (f"elite_{item['name']}", item["params"])
+        for item in elite_data
+        if item.get("params")
+    ]
+
+
+def build_base_items(args, state, replay_base_items):
+    champion_name, champion_params, champion_path = champion_base_item(state)
+    if args.base_mode == "champion":
+        return [(champion_name, champion_params)], {
+            "mode": args.base_mode,
+            "champion": champion_name,
+            "champion_path": str(champion_path),
+            "using_only_champion": True,
+        }
+
+    champion_weight = max(1, args.champion_base_weight)
+    elites = load_elite_items(args.elite_pool_path)
+    base_items = (
+        list(CANDIDATES.items())
+        + replay_base_items
+        + elites
+        + [(champion_name, champion_params)] * champion_weight
+    )
+    return base_items, {
+        "mode": args.base_mode,
+        "champion": champion_name,
+        "champion_path": str(champion_path),
+        "champion_weight": champion_weight,
+        "seed_count": len(CANDIDATES),
+        "replay_count": len(replay_base_items),
+        "elite_count": len(elites),
+    }
 
 
 def generate_round_candidates(round_index, count, output_dir, rng, base_items, priors=None, adaptive_strength=0.0):
@@ -1304,12 +1380,15 @@ def run_round(args, state, rng):
     telemetry_dir = REPO_ROOT / args.telemetry_dir
 
     print(f"round {round_index}: generating {args.candidates_per_round} candidates")
-    replay_base_items, replay_signals = load_replay_base(args.replay_signals)
+    if args.base_mode == "mixed":
+        replay_base_items, replay_signals = load_replay_base(args.replay_signals)
+    else:
+        replay_base_items, replay_signals = [], {}
     adaptive_priors = load_adaptive_priors(args)
     adaptive_strength = args.adaptive_strength if adaptive_priors.get("enabled") else 0.0
     adaptive_priors["strength"] = adaptive_strength
     if adaptive_priors.get("enabled"):
-        save_json(REPO_ROOT / "training" / "adaptive_priors.json", adaptive_priors)
+        save_json(normalize_family_path(args.ml_priors_path), adaptive_priors)
         prior_summary = compact_adaptive_priors(adaptive_priors)
         print(
             "adaptive mutation: "
@@ -1319,31 +1398,16 @@ def run_round(args, state, rng):
             f"down={prior_summary['down'][:4]}",
             flush=True,
         )
-    
-    elite_pool_path = REPO_ROOT / "training" / "elite_pool.json"
-    elites = []
-    if elite_pool_path.exists():
-        elite_data = json.loads(elite_pool_path.read_text(encoding="utf-8"))
-        for item in elite_data:
-            elites.append((f"elite_{item['name']}", item["params"]))
-            
-    # Load Best Submitted Champion as heavily weighted template
-    champion_base = []
-    if state.get("best_version_path"):
-        best_path = Path(state["best_version_path"])
-        if best_path.exists():
-            import re
-            content = best_path.read_text(encoding="utf-8")
-            match = re.search(r'BASE_PARAMS\s*=\s*(\{.*?\})', content, re.DOTALL)
-            if match:
-                try:
-                    best_params = eval(match.group(1))
-                    # Add it 10 times to give it a very high probability of being mutated
-                    champion_base.extend([("cw_champion_template", best_params)] * 10)
-                except Exception:
-                    pass
 
-    base_items = list(CANDIDATES.items()) + replay_base_items + elites + champion_base
+    elite_pool_path = normalize_family_path(args.elite_pool_path)
+    base_items, base_report = build_base_items(args, state, replay_base_items)
+    print(
+        "lineage base: "
+        f"mode={base_report['mode']} "
+        f"champion={base_report['champion']} "
+        f"bases={len(base_items)}",
+        flush=True,
+    )
     pool_size = args.ml_pool_size if args.ml_ranker else args.candidates_per_round
     candidate_specs = generate_candidate_specs(
         round_index,
@@ -1531,6 +1595,7 @@ def run_round(args, state, rng):
             "phase_rates": replay_signals.get("phase_rates", {}),
         },
         "candidate_bases": candidate_rollup(candidates),
+        "lineage_base": base_report,
         "finalist_bases": candidate_rollup(finalists),
         "adaptive_mutation": compact_adaptive_priors(adaptive_priors),
         "ml_ranker": ml_report,
@@ -1623,6 +1688,18 @@ def parse_args():
     parser.add_argument("--seed-start", type=int, default=0)
     parser.add_argument("--opponents", nargs="+", default=DEFAULT_OPPONENTS)
     parser.add_argument(
+        "--base-mode",
+        choices=("champion", "mixed"),
+        default="champion",
+        help="champion mutates only the current hybrid champion; mixed also uses seed/replay/elite bases.",
+    )
+    parser.add_argument(
+        "--champion-base-weight",
+        type=int,
+        default=12,
+        help="How heavily to weight the current hybrid champion when --base-mode mixed is used.",
+    )
+    parser.add_argument(
         "--adaptive-mutation",
         action=argparse.BooleanOptionalAction,
         default=True,
@@ -1644,6 +1721,7 @@ def parse_args():
     parser.add_argument("--ml-model-path", type=Path, default=Path("training/ml_ranker.joblib"))
     parser.add_argument("--ml-dataset-path", type=Path, default=Path("training/ml_dataset.jsonl"))
     parser.add_argument("--ml-priors-path", type=Path, default=Path("training/adaptive_priors.json"))
+    parser.add_argument("--elite-pool-path", type=Path, default=Path("training/elite_pool.json"))
     parser.add_argument(
         "--ml-retrain",
         action=argparse.BooleanOptionalAction,
@@ -1680,6 +1758,7 @@ def main():
     args.ml_pool_size = max(args.candidates_per_round, args.ml_pool_size)
     args.ml_exploration_rate = max(0.0, min(0.6, args.ml_exploration_rate))
     args.smoke_min_winrate = max(0.0, min(1.0, args.smoke_min_winrate))
+    args.champion_base_weight = max(1, args.champion_base_weight)
     rng = random.Random(args.random_seed)
     state_path = REPO_ROOT / args.state
     state = load_state(state_path)

@@ -14,9 +14,9 @@ CW_BEST="families/counterwave/agents/versions/auto_v014_20260523_040214_auto_r00
 echo "═══════════════════════════════════════════════"
 echo "        Orbit Wars — Hybrid Evolution          "
 echo "═══════════════════════════════════════════════"
-echo "Training ML models on 728 unified historic games..."
+echo "Main lineage: Hybrid Champion -> mutated children -> promoted Hybrid Champion"
 echo "Opponents to defeat for promotion:"
-echo " 1. Hybrid Champion"
+echo " 1. Current Hybrid Champion"
 echo " 2. Counterwave Best (v014)"
 echo " 3. Root Best (v009)"
 echo ""
@@ -33,11 +33,15 @@ exec "$PYTHON_BIN" families/hybrid/tools/auto_iterate.py \
   --ml-min-games 10 \
   --ml-pool-size 512 \
   --ml-exploration-rate 0.20 \
-  --ml-dataset-path training/ml_dataset.jsonl \
-  --ml-model-path training/ml_ranker.joblib \
-  --ml-priors-path training/adaptive_priors.json \
+  --base-mode champion \
+  --output-dir runs/lineage \
+  --telemetry-dir telemetry/lineage \
+  --elite-pool-path training/lineage/elite_pool.json \
+  --ml-dataset-path training/lineage/ml_dataset.jsonl \
+  --ml-model-path training/lineage/ml_ranker.joblib \
+  --ml-priors-path training/lineage/adaptive_priors.json \
   --smoke-min-winrate 0.30 \
   --sleep-seconds 30 \
-  --opponents champion "$CW_BEST" "$ROOT_BEST" \
+  --opponents champion \
   --min-winrate 0.54 \
   --min-opponent-winrate 0.53

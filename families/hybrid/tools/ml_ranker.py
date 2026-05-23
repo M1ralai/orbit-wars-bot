@@ -85,6 +85,8 @@ def normalized_param(params, name):
 def base_family(base):
     if not base:
         return "unknown"
+    if base.startswith("hybrid_champion_"):
+        return "hybrid_champion"
     if base in ("champion_template", "cw_champion_template") or base.endswith("_champion_template"):
         return "champion_template"
     if "replay" in base:

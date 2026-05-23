@@ -1,6 +1,7 @@
 {
   "hybrid_aggressive_defense": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/generated/hybrid_aggressive_defense.py",
   "hybrid_cw014_dna": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/generated/hybrid_cw014_dna.py",
+  "hybrid_genesis": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/generated/hybrid_genesis.py",
   "hybrid_smart_defense": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/generated/hybrid_smart_defense.py",
   "hybrid_tempo_expand": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/generated/hybrid_tempo_expand.py",
   "hybrid_v009_dna": "/Users/atahandemirer/Developer/orbit-wars-bot/families/hybrid/agents/generated/hybrid_v009_dna.py"
